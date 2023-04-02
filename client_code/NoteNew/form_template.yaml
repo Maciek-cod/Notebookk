@@ -1,0 +1,98 @@
+container:
+  type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"MGSKRV":50,"WSCEGF":30}',
+    spacing_below: small, background: ''}
+components:
+- type: Label
+  properties: {role: title, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: New Note, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: new_note_label
+  layout_properties: {grid_position: 'FTDEFC,MGSKRV'}
+- type: Button
+  properties: {role: tonal-button, align: right, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Close, font_size: null, font: '', spacing_above: none,
+    icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+    underline: false, icon: 'fa:times-circle'}
+  name: go_back_button
+  layout_properties:
+    col_widths: {}
+    grid_position: FTDEFC,WSCEGF
+  event_bindings: {click: go_back_button_click}
+- type: ColumnPanel
+  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"LZRKQP":40,"ODTLDL":15,"ZTHXDP":15,"KGJUHW":30}',
+    spacing_below: small, background: 'theme:On Primary'}
+  name: column_panel_1
+  layout_properties: {grid_position: 'QJSJMQ,ADNSCH'}
+  components:
+  - type: TextBox
+    properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Note title...,
+      border: None, enabled: true, foreground: '', visible: true, text: '', font_size: 25,
+      font: '', spacing_above: small, type: text, spacing_below: none, italic: false,
+      background: '', bold: false, underline: true}
+    name: title_text_box
+    layout_properties: {grid_position: 'GPOFNA,LZRKQP', column: null}
+    data_bindings:
+    - {property: text, code: 'self.item[''title'']', writeback: true}
+    event_bindings: {show: title_text_box_show}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '#ae0000',
+      visible: true, text: You must enter title name, font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: title_missing_lbl
+    layout_properties: {grid_position: 'MKRNSD,ODTLDL'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '#ae0000',
+      visible: true, text: You must choose notebook, font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: notebook_missing_lbl
+    layout_properties: {grid_position: 'MKRNSD,ZTHXDP'}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{}',
+      spacing_below: none, background: ''}
+    name: column_panel_2
+    layout_properties: {grid_position: 'MKRNSD,KGJUHW'}
+    components:
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: Choose notebook
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: small
+        spacing_below: none
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: notebooks_drop_down
+      layout_properties: {grid_position: 'IGFADC,FNFXVV', column: null}
+      data_bindings:
+      - {property: selected_value, code: 'self.item[''notebook'']', writeback: true}
+    - type: Button
+      properties: {role: filled-button, align: right, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Save, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:floppy-o'}
+      name: save_button
+      layout_properties: {grid_position: 'IGFADC,JWQZMK', column: null}
+      event_bindings: {click: save_button_click}
+  - type: ColumnPanel
+    properties: {}
+    name: quill_editor_panel
+    layout_properties: {grid_position: 'WFJFGE,XOXZZU'}
+is_package: true

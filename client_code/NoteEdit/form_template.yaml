@@ -1,0 +1,132 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: ColumnPanel
+  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"JXQPCO":20,"HWIOBG":22}',
+    spacing_below: small, background: 'theme:On Primary'}
+  name: column_panel_1
+  layout_properties: {grid_position: 'VNANEB,JIGFAE'}
+  components:
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"JNRHYI":45,"ZQAOUA":15}',
+      spacing_below: small, background: ''}
+    name: column_panel_4
+    layout_properties: {grid_position: 'FHTUNG,HWIOBG'}
+    components:
+    - type: TextBox
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Title...,
+        border: None, enabled: true, foreground: '', visible: true, text: '', font_size: 25,
+        font: '', spacing_above: none, type: text, spacing_below: small, italic: false,
+        background: '', bold: false, underline: true}
+      name: title_text_box
+      layout_properties:
+        col_widths: {}
+        grid_position: RXLWMA,JNRHYI
+        width: null
+        expand: false
+        column: null
+      data_bindings:
+      - {property: text, code: 'self.item[''title'']', writeback: false}
+      event_bindings: {}
+    - type: Button
+      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: '', font_size: 20, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:trash'}
+      name: delete_note_button
+      layout_properties:
+        col_widths: {}
+        grid_position: RXLWMA,ZQAOUA
+      event_bindings: {click: delete_note_button_click}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      spacing_below: none, background: ''}
+    name: column_panel_2
+    layout_properties: {grid_position: 'OHUPJK,JXQPCO'}
+    components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: 13, font: '', spacing_above: small, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: autor_label
+      layout_properties:
+        col_widths: {}
+        grid_position: CUTFEE,SWZXOC
+      data_bindings:
+      - {property: text, code: '''Last edit by: ''+self.item[''edited_by''][''name'']'}
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: 13, font: '', spacing_above: small, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: updated_label
+      layout_properties:
+        col_widths: {}
+        grid_position: CUTFEE,VTEXHX
+      data_bindings:
+      - {property: text, code: 'self.item[''updated''].strftime(''%d %b %Y''+'' at
+          ''+''%H:%M'')'}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{}',
+      spacing_below: none, background: ''}
+    name: column_panel_3
+    layout_properties: {grid_position: 'OHUPJK,MDPOGL'}
+    components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Notebook:', font_size: 16, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_1_copy
+      layout_properties:
+        col_widths: {}
+        grid_position: KIQIIT,WKKZAR
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: Change Notebook
+        border: None
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: false
+      name: notebooks_drop_down
+      layout_properties:
+        col_widths: {}
+        grid_position: KIQIIT,GJGQMK
+      data_bindings:
+      - {property: selected_value, code: 'self.item[''notebook'']', writeback: false}
+    - type: Button
+      properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Save, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:floppy-o'}
+      name: save_button
+      layout_properties:
+        col_widths: {}
+        grid_position: KIQIIT,IODSER
+      event_bindings: {click: save_button_click}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '',
+      spacing_below: small, background: ''}
+    name: quill_editor
+    layout_properties: {grid_position: 'RNYMNW,ZEMMBN'}
+is_package: true

@@ -1,0 +1,99 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
+    text: You are not sharing this notebook with anyone yet., font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: not_shared_yet_label
+  layout_properties: {grid_position: 'ECHJAI,KYZPXG'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Sharing with:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
+  name: is_shared_with_lbl
+  layout_properties: {grid_position: 'USDCHR,VJNFKP'}
+- type: DataGrid
+  properties:
+    role: null
+    columns:
+    - {id: THQZJK, title: Column 1, data_key: column_1, $$hashKey: 'object:57434',
+      width: '', expand: false}
+    - {id: FANBBU, title: Column 2, data_key: column_2, $$hashKey: 'object:57435'}
+    auto_header: false
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: false
+    spacing_above: small
+    spacing_below: small
+    background: ''
+  name: data_grid_1
+  layout_properties: {grid_position: 'RJHKDT,PQBBUQ'}
+  components:
+  - type: RepeatingPanel
+    properties: {spacing_above: none, spacing_below: none, item_template: SharedWith.RowTemplate1}
+    name: repeating_panel_1
+    layout_properties: {}
+- type: TextBox
+  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: 'Enter
+      Name:', border: '', enabled: true, foreground: '', visible: true, text: '',
+    font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false}
+  name: share_with_text_box
+  layout_properties: {grid_position: 'KBVARB,RKQMRF'}
+  event_bindings: {pressed_enter: share_with_text_box_pressed_enter, show: share_with_text_box_show}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+    visible: false, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
+  name: user_in_notebook_label
+  layout_properties: {grid_position: 'WQRCBL,JHKMZY'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+    visible: false, text: Invalid user name..., font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: invalid_name_lbl
+  layout_properties: {grid_position: 'GSVPLW,XFEVSH'}
+- type: Button
+  properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Share, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: 'fa:share'}
+  name: share_button
+  layout_properties: {grid_position: 'PMCPRW,WWPTKJ'}
+  event_bindings: {click: share_button_click}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: shared_by_other_user_lbl
+  layout_properties: {grid_position: 'MUFYVT,XOVBCK'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Members:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
+  name: members_label
+  layout_properties: {grid_position: 'SNWSDJ,ADYHEZ'}
+- type: RepeatingPanel
+  properties: {spacing_above: none, spacing_below: none, item_template: SharedWith.RowTemplate2}
+  name: members_repeating_panel
+  layout_properties: {grid_position: 'RGMYHB,OTDOCJ'}
+- type: Button
+  properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: false, text: Leave, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: 'fa:times'}
+  name: leave_button
+  layout_properties: {grid_position: 'LNWPGP,LIAVEX'}
+  event_bindings: {click: leave_button_click}
+is_package: true

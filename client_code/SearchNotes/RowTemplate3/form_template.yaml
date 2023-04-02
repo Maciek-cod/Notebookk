@@ -1,0 +1,33 @@
+container:
+  type: DataRowPanel
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
+    visible: true, font_size: null, font: '', spacing_above: none, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false}
+components:
+- type: ColumnPanel
+  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: 'theme:On Primary'}
+  name: column_panel_1
+  layout_properties: {column: OAKFVL}
+  components:
+  - type: Link
+    properties: {role: selected, url: '', align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: none, icon_align: left, col_widths: '', spacing_below: none,
+      italic: false, background: '', bold: true, underline: false, icon: ''}
+    name: note_name_link
+    layout_properties: {column: OAKFVL, grid_position: 'YFFPNY,DOBJUY'}
+    data_bindings:
+    - {property: text, code: 'self.item[''title'']'}
+    event_bindings: {click: note_name_link_click}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+      spacing_below: none, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: content_label
+    layout_properties: {column: OAKFVL, grid_position: 'LJPRGF,QDNMCV'}
+    data_bindings:
+    - {property: text, code: 'self.item[''content''][:100].replace(''\n'', '''')+''...'''}
+is_package: true
