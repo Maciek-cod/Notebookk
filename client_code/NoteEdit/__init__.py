@@ -8,15 +8,15 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from HashRouting import routing
+# from HashRouting import routing
 from anvil.js.window import Quill
 import json
 
 
-@routing.route('', title='Notebook - Home')
-@routing.route('note', url_keys=['id'], title="Notebook - Notes")
+# @routing.route('', title='Notebook - Home')
+# @routing.route('note', url_keys=['id'], title="Notebook - Notes")
 class NoteEdit(NoteEditTemplate):
-  def __init__(self, **properties):
+  def __init__(self, note_nr, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
@@ -46,16 +46,17 @@ class NoteEdit(NoteEditTemplate):
         'shortKey': True
       }, self.handle_quill_keydown_ctrl_s)
     
-    if not self.url_dict.get('id', ''):
+    if not note_nr:
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
       self.quill.setContents(json.loads(self.item['content_json']))
     else:
       try:
-        self.item = anvil.server.call('get_note_by_id', self.url_dict['id'])
+        self.item = anvil.server.call('get_note_by_id', note_nr ) # self.url_dict['id'])
         self.quill.setContents(json.loads(self.item['content_json']))
       except:
         # the item doesn't exist!
-        routing.set_url_hash('', replace_current_url=True)
+        # routing.set_url_hash('', replace_current_url=True)
+        get_open_form().content_panel = NoteEdit()
         raise Exception(f"It looks like Note {self.url_dict['id']} doesn't exist")
 
     self.set_event_handler('x-refresh-notes', self.refresh_notes)

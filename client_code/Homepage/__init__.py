@@ -8,7 +8,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from HashRouting import routing
+# from HashRouting import routing
 from ..NoteNew import NoteNew
 from ..NoteEdit import NoteEdit
 from ..NotebookEdit import NotebookEdit
@@ -16,7 +16,7 @@ from ..SearchNotes import SearchNotes
 from ..WelcomeAlert import WelcomeAlert
 
 
-@routing.main_router
+# @routing.main_router
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -31,7 +31,7 @@ class Homepage(HomepageTemplate):
             dismissible=False)
       
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
-      
+    self.content_panel = NoteEdit(note_nr=None)
   def refresh_notebooks(self):
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
 
@@ -45,11 +45,14 @@ class Homepage(HomepageTemplate):
     
   def new_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    routing.set_url_hash('new-note')
+    # routing.set_url_hash('new-note')
+    self.content_panel = NoteNew()
+    
 
   def search_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     routing.set_url_hash('search-notes')
+    self.content_panel = SearchNotes()
 
   def delete_note(self, note, **event_args):
     note_deleted = note['title']

@@ -8,7 +8,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from HashRouting import routing
+# from HashRouting import routing
 
 
 class SharedWith(SharedWithTemplate):
@@ -110,7 +110,8 @@ class SharedWith(SharedWithTemplate):
     if confirm("Are you sure you want to leave: {}?".format(self.notebook['name'])):
       anvil.server.call('remove_user_from_the_notebook_users', self.notebook)
       alert(f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.')
-      routing.reload_page(hard=True)
+      # routing.reload_page(hard=True)
+      self.refresh_data_bindings()
 
   def stop_sharing_notebook_with_user(self, user, **event_args):
     anvil.server.call('stop_sharing_notebook_with_user', self.notebook, user)
