@@ -32,6 +32,7 @@ class Homepage(HomepageTemplate):
       
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
     self.content_panel = NoteEdit(note_nr=None)
+    self.se
   def refresh_notebooks(self):
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
 
