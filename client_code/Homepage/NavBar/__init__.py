@@ -28,7 +28,9 @@ class NavBar(NavBarTemplate):
           buttons=[("Create New Note", True), ("Cancel", False)])
         if pressed_new_note:
           # routing.set_url_hash('new-note')
-          get_open_form().content_panel = NoteNew()
+          # get_open_form().content_panel = NoteNew()
+          get_open_form().content_panel.clear()
+          get_open_form().content_panel.add_component(NoteNew())
         self.repeating_panel_1.items = None
     else:
       self.repeating_panel_1.items = None

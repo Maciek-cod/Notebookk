@@ -88,7 +88,9 @@ class SearchNotes(SearchNotesTemplate):
     self.search_text_box.text = ''
     self.show_or_hide_editor(False)
     # routing.go_back()
-    get_open_form().content_panel = NoteEdit()
+    # get_open_form().content_panel = NoteEdit()
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
 
   def search_text_box_show(self, **event_args):
     """This method is called when the TextBox is shown on the screen"""

@@ -56,7 +56,9 @@ class NoteEdit(NoteEditTemplate):
       except:
         # the item doesn't exist!
         # routing.set_url_hash('', replace_current_url=True)
-        get_open_form().content_panel = NoteEdit()
+        # get_open_form().content_panel = NoteEdit()
+        get_open_form().content_panel.clear()
+        get_open_form().content_panel.add_component(NoteEdit())
         raise Exception(f"It looks like Note {self.url_dict['id']} doesn't exist")
 
     self.set_event_handler('x-refresh-notes', self.refresh_notes)

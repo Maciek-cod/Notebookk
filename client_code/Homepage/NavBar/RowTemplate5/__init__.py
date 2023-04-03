@@ -22,6 +22,8 @@ class RowTemplate5(RowTemplate5Template):
     get_open_form().search_button.visible = True
     get_open_form().content_panel.raise_event_on_children('x-clear-input-fields')
     # routing.set_url_hash(f'note?id={self.item["id"]}')
-    get_open_form().content_panel = NoteEdit(self.item["id"])
+    # get_open_form().content_panel = NoteEdit(self.item["id"])
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(NoteEdit(self.item["id"]))
 
 
