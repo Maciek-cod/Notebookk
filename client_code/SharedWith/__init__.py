@@ -30,6 +30,7 @@ class SharedWith(SharedWithTemplate):
       self.not_shared_yet_label.visible = False
       self.share_with_text_box.visible = False
       self.share_button.visible = False
+      self.read_only_check_box.visible = False
     else:
       self.members_label.visible = False
       self.shared_by_other_user_lbl.visible = False
@@ -79,30 +80,41 @@ class SharedWith(SharedWithTemplate):
         return True
     return False
   
-  def add_user_to_notebook_users(self, user):
-    anvil.server.call('add_user_to_notebook_users', self.notebook, user)
-    alert(f'You successfully shared {self.notebook["name"]} with {user["name"]}')
+  def add_user_to_notebook_users(self, user, read_only):
+    anvil.server.call('add_user_to_notebook_users', self.notebook, user, read_only)
+    if read_only:
+      alert(f'You successfully shared {self.notebook["name"]} with {user["name"]} with read-only permissins.')
+    else:
+      alert(f'You successfully shared {self.notebook["name"]} with {user["name"]}')
     self.open_alert()
     
   def share_with_text_box_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
     user = self.check_if_user_exist()
+    read_only = False
     if user:
       sharing = self.check_if_user_is_not_sharing_the_notebook_already(user, self.notebook)
       if sharing:
         self.user_in_notebook_label.visible = True
       else:
-        self.add_user_to_notebook_users(user)
+        if self.read_only_check_box.checked:
+          read_only = True
+        self.add_user_to_notebook_users(user, read_only)
+      self.read_only_check_box.checked = False
 
   def share_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     user = self.check_if_user_exist()
+    read_only = False
     if user:
       sharing = self.check_if_user_is_not_sharing_the_notebook_already(user, self.notebook)
       if sharing:
         self.user_in_notebook_label.visible = True
       else:
-        self.add_user_to_notebook_users(user)
+        if self.read_only_check_box.checked:
+          read_only = True
+        self.add_user_to_notebook_users(user, read_only)
+      self.read_only_check_box.checked = False
 
   def leave_button_click(self, **event_args):
     """This method is called when the button is clicked"""

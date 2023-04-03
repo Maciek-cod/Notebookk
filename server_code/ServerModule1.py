@@ -22,9 +22,13 @@ def find_user(name):
   return user if user else False
 
 @anvil.server.callable
-def add_user_to_notebook_users(notebook, user):
+def add_user_to_notebook_users(notebook, user, read_only):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
   notebook['users'] += [user]
+  if read_only:
+    if notebook['users_read_only'] is None:
+      notebook['users_read_only'] = []
+    notebook['users_read_only'] += [user]
   notebook.update(users=notebook['users'])
 
 @anvil.server.callable
