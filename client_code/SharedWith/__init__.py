@@ -9,7 +9,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 # from HashRouting import routing
-
+from ..NotebookEdit import NotebookEdit
 
 class SharedWith(SharedWithTemplate):
   def __init__(self, notebook, **properties):
@@ -109,10 +109,11 @@ class SharedWith(SharedWithTemplate):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to leave: {}?".format(self.notebook['name'])):
       anvil.server.call('remove_user_from_the_notebook_users', self.notebook)
-      alert(f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.')
+      # alert(f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.')
       # routing.reload_page(hard=True)
-      get_open_form().refresh_data_bindings()
-      self.refresh_data_bindings()
+      NotebookEdit.refresh_notebooks()
+      self.shared_by_other_user_lbl.text = f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.'
+
 
   def stop_sharing_notebook_with_user(self, user, **event_args):
     anvil.server.call('stop_sharing_notebook_with_user', self.notebook, user)
