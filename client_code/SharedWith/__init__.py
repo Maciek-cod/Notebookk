@@ -107,7 +107,7 @@ class SharedWith(SharedWithTemplate):
   def leave_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to leave: {}?".format(self.notebook['name'])):
-      anvil.server.call('remove_user_from_the_notebook_users', self.notebook)
+      anvil.server.call('remove_user_from_the_notebook_users', self.notebook) 
       self.members_label.visible = False
       self.leave_button.visible = False
       self.members_repeating_panel.items = None
@@ -115,6 +115,7 @@ class SharedWith(SharedWithTemplate):
       get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=None)
       self.shared_by_other_user_lbl.text = f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.'
       # get_open_form().close_alert() How to refresh notebooks on NotebookEdit????????????????
+      anvil.get_open_form()
       
 
   def stop_sharing_notebook_with_user(self, user, **event_args):
