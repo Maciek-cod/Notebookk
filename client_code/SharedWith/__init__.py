@@ -109,9 +109,19 @@ class SharedWith(SharedWithTemplate):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to leave: {}?".format(self.notebook['name'])):
       anvil.server.call('remove_user_from_the_notebook_users', self.notebook)
-      # alert(f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.')
       # routing.reload_page(hard=True)
-      NotebookEdit.refresh_notebooks()
+      self.members_label.visible = False
+      self.leave_button.visible = False
+      self.members_repeating_panel.items = None
+      get_open_form().refresh_notebooks()
+      # self.parent.refresh_notebooks()
+      # print(self.parent)
+      # NotebookEdit().self.raise_event('x-refresh-notebooks')
+      # print(dir(NotebookEdit()))
+      # print(NotebookEdit().get_event_handlers())
+      # NotebookEdit().refresh_data_bindings()
+      NotebookEdit().notebooks_names_panel.items = anvil.server.call('get_all_notebooks')
+      get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=None)
       self.shared_by_other_user_lbl.text = f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.'
 
 
