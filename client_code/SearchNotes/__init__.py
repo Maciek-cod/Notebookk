@@ -8,12 +8,10 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-# from HashRouting import routing
 from anvil.js.window import Quill
 import json
 from ..NoteEdit import NoteEdit
 
-# @routing.route('search-notes', title="Notebook - Search")
 class SearchNotes(SearchNotesTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -83,12 +81,8 @@ class SearchNotes(SearchNotesTemplate):
     
   def close_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    # get_open_form().new_note_button.visible = True
-    # get_open_form().search_button.visible = True
     self.search_text_box.text = ''
     self.show_or_hide_editor(False)
-    # routing.go_back()
-    # get_open_form().content_panel = NoteEdit()
     get_open_form().content_panel.clear()
     get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
 

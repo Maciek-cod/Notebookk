@@ -9,7 +9,6 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 from ...NoteNew import NoteNew
-# from HashRouting import routing
 
 class NavBar(NavBarTemplate):
   def __init__(self, **properties):
@@ -27,8 +26,6 @@ class NavBar(NavBarTemplate):
           title=f"Notebook {self.item['name']} has no notes.",
           buttons=[("Create New Note", True), ("Cancel", False)])
         if pressed_new_note:
-          # routing.set_url_hash('new-note')
-          # get_open_form().content_panel = NoteNew()
           get_open_form().content_panel.clear()
           get_open_form().content_panel.add_component(NoteNew())
         self.repeating_panel_1.items = None

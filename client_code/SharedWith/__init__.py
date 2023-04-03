@@ -8,7 +8,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-# from HashRouting import routing
 from ..NotebookEdit import NotebookEdit
 
 class SharedWith(SharedWithTemplate):
@@ -109,7 +108,6 @@ class SharedWith(SharedWithTemplate):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to leave: {}?".format(self.notebook['name'])):
       anvil.server.call('remove_user_from_the_notebook_users', self.notebook)
-      # routing.reload_page(hard=True)
       self.members_label.visible = False
       self.leave_button.visible = False
       self.members_repeating_panel.items = None

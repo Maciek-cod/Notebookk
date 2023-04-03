@@ -8,7 +8,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-# from HashRouting import routing
 from ....NoteEdit import NoteEdit
 
 class RowTemplate5(RowTemplate5Template):
@@ -21,8 +20,6 @@ class RowTemplate5(RowTemplate5Template):
     get_open_form().new_note_button.visible = True
     get_open_form().search_button.visible = True
     get_open_form().content_panel.raise_event_on_children('x-clear-input-fields')
-    # routing.set_url_hash(f'note?id={self.item["id"]}')
-    # get_open_form().content_panel = NoteEdit(self.item["id"])
     get_open_form().content_panel.clear()
     get_open_form().content_panel.add_component(NoteEdit(self.item["id"]))
 

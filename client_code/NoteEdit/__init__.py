@@ -8,13 +8,10 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-# from HashRouting import routing
 from anvil.js.window import Quill
 import json
 
 
-# @routing.route('', title='Notebook - Home')
-# @routing.route('note', url_keys=['id'], title="Notebook - Notes")
 class NoteEdit(NoteEditTemplate):
   def __init__(self, note_nr, **properties):
     # Set Form properties and Data Bindings.
@@ -55,8 +52,6 @@ class NoteEdit(NoteEditTemplate):
         self.quill.setContents(json.loads(self.item['content_json']))
       except:
         # the item doesn't exist!
-        # routing.set_url_hash('', replace_current_url=True)
-        # get_open_form().content_panel = NoteEdit()
         get_open_form().content_panel.clear()
         get_open_form().content_panel.add_component(NoteEdit())
         raise Exception(f"It looks like Note {self.url_dict['id']} doesn't exist")

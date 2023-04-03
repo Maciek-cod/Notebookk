@@ -8,13 +8,11 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-# from HashRouting import routing
 from anvil.js.window import Quill
 from .. import validation
 import json
 from ..NoteEdit import NoteEdit
 
-# @routing.route('new-note', title="Notebook - New Note")
 class NoteNew(NoteNewTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -78,8 +76,6 @@ class NoteNew(NoteNewTemplate):
       new_nr_id = anvil.server.call('save_new_note', new_note)
       get_open_form().refresh_notebooks()
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()
-      # routing.set_url_hash(f'note?id={new_nr_id}', load_from_cache=False)
-      # get_open_form().content_panel = NoteEdit(new_nr_id)
       get_open_form().content_panel.clear()
       get_open_form().content_panel.add_component(NoteEdit(new_nr_id))
       self.title_text_box.text = ''
@@ -95,7 +91,5 @@ class NoteNew(NoteNewTemplate):
   def go_back_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.clear_input_fields()
-    # routing.go_back()
-    # get_open_form().content_panel = NoteEdit()
     get_open_form().content_panel.clear()
     get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
