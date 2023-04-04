@@ -74,6 +74,15 @@ class SearchNotes(SearchNotesTemplate):
     try:
       self.item = note
       self.quill.setContents(json.loads(self.item['content_json']))
+      # Check what restricrions the user has.
+      if self.item['notebook']['users_read_only'] is not None:
+        for user in self.item['notebook']['users_read_only']:
+          if user == anvil.users.get_user():
+            self.quill.enable(False)
+            self.save_button.enabled = False
+            self.delete_note_button.enabled = False
+            self.notebooks_drop_down.enabled = False
+            
       self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
       self.show_or_hide_editor(True)
     except:

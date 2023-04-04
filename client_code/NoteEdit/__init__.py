@@ -63,6 +63,7 @@ class NoteEdit(NoteEditTemplate):
           self.quill.enable(False)
           self.save_button.enabled = False
           self.delete_note_button.enabled = False
+          self.notebooks_drop_down.enabled = False
     
     self.set_event_handler('x-refresh-notes', self.refresh_notes)
     
