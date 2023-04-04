@@ -16,8 +16,6 @@ class SharedWith(SharedWithTemplate):
     self.init_components(**properties)
     self.notebook = notebook
     self.open_alert()
-
-    self.add_event_handler('x-stop_sharing_notebook_with_user', self.stop_sharing_notebook_with_user)
     
   def open_alert(self, **event_args):
     if self.notebook['owner'] != anvil.users.get_user():
@@ -127,10 +125,15 @@ class SharedWith(SharedWithTemplate):
       get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=None)
       self.shared_by_other_user_lbl.text = f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.'
       # get_open_form().close_alert() How to refresh notebooks on NotebookEdit????????????????
-      self.raise_event('yes_button_click', **event_args)
-      
+      # self.raise_event('yes_button_click', **event_args)
 
   def stop_sharing_notebook_with_user(self, user, **event_args):
     anvil.server.call('stop_sharing_notebook_with_user', self.notebook, user)
     self.user_in_notebook_label.visible = False
     self.open_alert()
+
+  def check_if_user_has_read_access_only(self, user, **event_args):
+    if self.notebook['users_read_only'] is None: return False
+    for u in self.notebook['users_read_only']: 
+      if user == u: return True
+    return False

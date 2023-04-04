@@ -41,6 +41,8 @@ def remove_user_from_the_notebook_users(notebook):
 def stop_sharing_notebook_with_user(notebook, user):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
   notebook['users'] = [u for u in notebook['users'] if u != user]
+  if notebook['users_read_only'] is not None:
+    notebook['users_read_only'] = [u for u in notebook['users_read_only'] if u != user]
   notebook.update(users=notebook['users'])
 
 @anvil.server.callable

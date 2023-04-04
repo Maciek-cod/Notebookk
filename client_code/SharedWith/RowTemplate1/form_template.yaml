@@ -9,10 +9,11 @@ components:
   layout_properties: {column: FANBBU}
   event_bindings: {click: remove_user_button_click}
   data_bindings: []
-- type: Label
+- type: Link
   properties: {}
-  name: user_name_lbl
+  name: user_name_link
   layout_properties: {column: THQZJK}
   data_bindings:
   - {property: text, code: 'self.item[''name'']'}
+  event_bindings: {click: user_name_link_click}
 is_package: true

@@ -54,8 +54,16 @@ class NoteEdit(NoteEditTemplate):
         # the item doesn't exist!
         get_open_form().content_panel.clear()
         get_open_form().content_panel.add_component(NoteEdit())
-        raise Exception(f"It looks like Note {self.url_dict['id']} doesn't exist")
+        alert(f"It looks like Note {self.url_dict['id']} doesn't exist")
 
+    # Check what restricrions the user has.
+    if self.item['notebook']['users_read_only'] is not None:
+      for user in self.item['notebook']['users_read_only']:
+        if user == anvil.users.get_user():
+          self.quill.enable(False)
+          self.save_button.enabled = False
+          self.delete_note_button.enabled = False
+    
     self.set_event_handler('x-refresh-notes', self.refresh_notes)
     
   def handle_quill_keydown_ctrl_s(self, event_name, els):
