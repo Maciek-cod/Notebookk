@@ -102,8 +102,10 @@ def save_new_note(note_dict):
   last_note_id = last_note_id['id']
   new_nr_id = last_note_id + 1
   app_tables.notes.client_writable().add_row(
-          id=new_nr_id, updated=datetime.now(), 
-          edited_by=current_user, **note_dict)
+          id=new_nr_id, 
+          updated=datetime.now(), 
+          edited_by=current_user,
+          **note_dict)
   
   # update notebook 'updated time'
   notebook = app_tables.notebooks.client_readable().get_by_id(note_dict['notebook'].get_id())

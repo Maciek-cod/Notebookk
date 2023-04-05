@@ -54,7 +54,7 @@ class NoteEdit(NoteEditTemplate):
         # the item doesn't exist!
         get_open_form().content_panel.clear()
         get_open_form().content_panel.add_component(NoteEdit())
-        alert(f"It looks like Note {self.url_dict['id']} doesn't exist")
+        alert(f"It looks like Note {note_nr} doesn't exist")
 
     # Check what restricrions the user has.
     if self.item['notebook']['users_read_only'] is not None:

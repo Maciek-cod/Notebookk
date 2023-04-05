@@ -78,9 +78,9 @@ class NoteNew(NoteNewTemplate):
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()
       get_open_form().content_panel.clear()
       get_open_form().content_panel.add_component(NoteEdit(new_nr_id))
-      self.title_text_box.text = ''
-      self.quill.setContents(json.loads('[{"insert":"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n"}]'))
-      self.notebooks_drop_down.selected_value = None
+      # self.title_text_box.text = ''
+      # self.quill.setContents(json.loads('[{"insert":"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n"}]'))
+      # self.notebooks_drop_down.selected_value = None
     else:
       self.validator.show_all_errors()
 
