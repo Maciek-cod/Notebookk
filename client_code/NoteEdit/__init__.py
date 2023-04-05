@@ -43,10 +43,7 @@ class NoteEdit(NoteEditTemplate):
         'shortKey': True
       }, self.handle_quill_keydown_ctrl_s)
     
-    if not note_nr:
-      self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
-      self.quill.setContents(json.loads(self.item['content_json']))
-    else:
+    if note_nr:
       try:
         self.item = anvil.server.call('get_note_by_id', note_nr ) # self.url_dict['id'])
         self.quill.setContents(json.loads(self.item['content_json']))
@@ -54,7 +51,11 @@ class NoteEdit(NoteEditTemplate):
         # the item doesn't exist!
         get_open_form().content_panel.clear()
         get_open_form().content_panel.add_component(NoteEdit())
-        alert(f"It looks like Note {note_nr} doesn't exist")
+        alert(f"It looks like Note requested doesn't exist")
+    else:
+      self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
+      self.quill.setContents(json.loads(self.item['content_json']))
+    
 
     # Check what restricrions the user has.
     if self.item['notebook']['users_read_only'] is not None:

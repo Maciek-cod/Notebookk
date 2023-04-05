@@ -96,21 +96,33 @@ def create_welcoming_note(notebook):
   new_note['notebook'] = notebook
   anvil.server.call('save_new_note', new_note)
   
+# @anvil.server.callable
+# def save_new_note(note_dict):
+#   last_note_id = app_tables.notes.client_writable().search(tables.order_by("id", ascending=False))[0]
+#   last_note_id = last_note_id['id']
+#   new_nr_id = last_note_id + 1
+#   app_tables.notes.client_writable().add_row(
+#           id=new_nr_id, 
+#           updated=datetime.now(), 
+#           edited_by=current_user,
+#           **note_dict)
+  
+#   # update notebook 'updated time'
+#   notebook = app_tables.notebooks.client_readable().get_by_id(note_dict['notebook'].get_id())
+#   notebook.update(updated=datetime.now())
+#   return new_nr_id
+
 @anvil.server.callable
 def save_new_note(note_dict):
-  last_note_id = app_tables.notes.client_writable().search(tables.order_by("id", ascending=False))[0]
-  last_note_id = last_note_id['id']
-  new_nr_id = last_note_id + 1
   app_tables.notes.client_writable().add_row(
-          id=new_nr_id, 
           updated=datetime.now(), 
-          edited_by=current_user,
-          **note_dict)
+          edited_by=current_user, 
+          **note_dict
+  )
   
   # update notebook 'updated time'
   notebook = app_tables.notebooks.client_readable().get_by_id(note_dict['notebook'].get_id())
   notebook.update(updated=datetime.now())
-  return new_nr_id
   
 @anvil.server.callable
 def seve_new_notebook(notebook_name):

@@ -19,6 +19,8 @@ class NoteNew(NoteNewTemplate):
     self.init_components(**properties)
 
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
+    # 
+          
     current_user = anvil.users.get_user()
     
     element = anvil.js.get_dom_node(self.quill_editor_panel)
@@ -73,14 +75,11 @@ class NoteNew(NoteNewTemplate):
                   'content': self.quill.getText(),
                   'content_json': json.dumps(self.quill.getContents().ops), 
                   'notebook': self.notebooks_drop_down.selected_value}
-      new_nr_id = anvil.server.call('save_new_note', new_note)
+      anvil.server.call('save_new_note', new_note)
       get_open_form().refresh_notebooks()
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()
       get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(NoteEdit(new_nr_id))
-      # self.title_text_box.text = ''
-      # self.quill.setContents(json.loads('[{"insert":"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n"}]'))
-      # self.notebooks_drop_down.selected_value = None
+      get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
     else:
       self.validator.show_all_errors()
 
