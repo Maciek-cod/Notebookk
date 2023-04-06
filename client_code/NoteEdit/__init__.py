@@ -13,7 +13,7 @@ import json
 
 
 class NoteEdit(NoteEditTemplate):
-  def __init__(self, note_nr, **properties):
+  def __init__(self, note, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
@@ -43,9 +43,9 @@ class NoteEdit(NoteEditTemplate):
         'shortKey': True
       }, self.handle_quill_keydown_ctrl_s)
     
-    if note_nr:
+    if note:
       try:
-        self.item = anvil.server.call('get_note_by_id', note_nr ) # self.url_dict['id'])
+        self.item = anvil.server.call('get_note_by_id', note)
         self.quill.setContents(json.loads(self.item['content_json']))
       except:
         # the item doesn't exist!

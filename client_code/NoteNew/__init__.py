@@ -19,8 +19,6 @@ class NoteNew(NoteNewTemplate):
     self.init_components(**properties)
 
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
-    # 
-          
     current_user = anvil.users.get_user()
     
     element = anvil.js.get_dom_node(self.quill_editor_panel)
@@ -79,7 +77,7 @@ class NoteNew(NoteNewTemplate):
       get_open_form().refresh_notebooks()
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()
       get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
+      get_open_form().content_panel.add_component(NoteEdit(note=None))
     else:
       self.validator.show_all_errors()
 

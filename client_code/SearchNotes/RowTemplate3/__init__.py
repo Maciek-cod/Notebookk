@@ -33,6 +33,6 @@ class RowTemplate3(RowTemplate3Template):
     
   def note_name_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    note = anvil.server.call('get_note_by_id', self.item['id'])
+    note = anvil.server.call('get_note_by_id', self.item)
     # SearchNotes.show_searched_note(note=note) # WHY This code doesn't work 
     self.parent.parent.parent.show_searched_note(note=note) # BUT this one does??????

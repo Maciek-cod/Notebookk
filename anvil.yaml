@@ -66,9 +66,6 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: id
-      admin_ui: {width: 200}
-      type: number
     - name: title
       admin_ui: {width: 200}
       type: string

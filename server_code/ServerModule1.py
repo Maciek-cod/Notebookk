@@ -54,7 +54,19 @@ def get_all_notebooks():
 @anvil.server.callable
 def get_all_notebook_names():
   if current_user is not None:
-    return [(nbook['name'], nbook) for nbook in app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])]
+    nbook = app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])
+    lis = []
+    for nbk in nbook:
+      if nbk['users_read_only'] is None:
+        lis.append(nbk)
+      else:
+        donot = False
+        for user in nbk['users_read_only']:
+          if user == current_user:
+            donot = True
+        if not donot:
+          lis.append(nbk)
+    return [(nbook['name'], nbook) for nbook in lis]
   raise Exception("User is not logged in.")
   
 @anvil.server.callable
@@ -71,10 +83,9 @@ def get_one_before_the_last_note_from_the_notebook(note):
     return None
     
 @anvil.server.callable
-def get_note_by_id(id):
+def get_note_by_id(note):
   if current_user is not None:
-    id = int(id)
-    return app_tables.notes.client_writable().get(id=id)
+    return app_tables.notes.client_writable().get_by_id(note.get_id())
   
 @anvil.server.callable
 def get_all_notes_in_the_notebook(notebook):
@@ -95,22 +106,6 @@ def create_welcoming_note(notebook):
   new_note['content'] = 'Welcoming Note'
   new_note['notebook'] = notebook
   anvil.server.call('save_new_note', new_note)
-  
-# @anvil.server.callable
-# def save_new_note(note_dict):
-#   last_note_id = app_tables.notes.client_writable().search(tables.order_by("id", ascending=False))[0]
-#   last_note_id = last_note_id['id']
-#   new_nr_id = last_note_id + 1
-#   app_tables.notes.client_writable().add_row(
-#           id=new_nr_id, 
-#           updated=datetime.now(), 
-#           edited_by=current_user,
-#           **note_dict)
-  
-#   # update notebook 'updated time'
-#   notebook = app_tables.notebooks.client_readable().get_by_id(note_dict['notebook'].get_id())
-#   notebook.update(updated=datetime.now())
-#   return new_nr_id
 
 @anvil.server.callable
 def save_new_note(note_dict):
@@ -119,7 +114,6 @@ def save_new_note(note_dict):
           edited_by=current_user, 
           **note_dict
   )
-  
   # update notebook 'updated time'
   notebook = app_tables.notebooks.client_readable().get_by_id(note_dict['notebook'].get_id())
   notebook.update(updated=datetime.now())
