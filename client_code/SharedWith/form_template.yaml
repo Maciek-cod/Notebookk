@@ -4,7 +4,7 @@ container:
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: false,
-    text: You are not sharing this notebook with anyone yet., font_size: null, font: '',
+    text: This notebook is not shared with anyone yet., font_size: null, font: '',
     spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
     bold: false, underline: false, icon: ''}
   name: not_shared_yet_label

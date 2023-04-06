@@ -57,15 +57,12 @@ def get_all_notebook_names():
     nbook = app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])
     lis = []
     for nbk in nbook:
-      if nbk['users_read_only'] is None:
-        lis.append(nbk)
+      if nbk['users_read_only'] is None: lis.append(nbk)
       else:
         donot = False
         for user in nbk['users_read_only']:
-          if user == current_user:
-            donot = True
-        if not donot:
-          lis.append(nbk)
+          if user == current_user: donot = True
+        if not donot: lis.append(nbk)
     return [(nbook['name'], nbook) for nbook in lis]
   raise Exception("User is not logged in.")
   
