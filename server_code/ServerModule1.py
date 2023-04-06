@@ -17,8 +17,8 @@ def save_user_name(name):
   user.update(name=name)
 
 @anvil.server.callable
-def find_user(name):
-  user = app_tables.users.client_readable().get(name=name)
+def find_user(email):
+  user = app_tables.users.client_readable().get(email=email)
   return user if user else False
 
 @anvil.server.callable

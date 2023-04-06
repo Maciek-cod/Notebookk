@@ -54,7 +54,7 @@ class SharedWith(SharedWithTemplate):
   def check_if_user_exist(self):
     user_exist = anvil.server.call('find_user', self.share_with_text_box.text)
     if user_exist:
-      # if current_user try to share notebook with himself 
+      # if current user try to share notebook with himself 
       if user_exist == anvil.users.get_user():
         self.user_in_notebook_label.text = 'You can’t share this notebook with yourself.'
         self.user_in_notebook_label.visible = False
@@ -62,7 +62,7 @@ class SharedWith(SharedWithTemplate):
         self.share_with_text_box.text = ''
         return user_exist
       else:
-        self.user_in_notebook_label.text = f'You sharing this notebook with {self.share_with_text_box.text} already.'
+        self.user_in_notebook_label.text = f'You sharing this notebook with {user_exist["name"]} ({user_exist["email"]}) already.'
         self.user_in_notebook_label.visible = False
         self.invalid_name_lbl.visible = False
         self.share_with_text_box.text = ''
@@ -85,7 +85,8 @@ class SharedWith(SharedWithTemplate):
     else:
       alert(f'You successfully shared {self.notebook["name"]} with {user["name"]}')
     self.open_alert()
-    
+
+  # Is this 'enter' necessary?
   def share_with_text_box_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
     user = self.check_if_user_exist()

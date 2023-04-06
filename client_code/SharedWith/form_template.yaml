@@ -43,7 +43,7 @@ components:
     layout_properties: {}
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: 'Enter
-      Name:', border: '', enabled: true, foreground: '', visible: true, text: '',
+      email:', border: '', enabled: true, foreground: '', visible: true, text: '',
     font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
     italic: false, background: '', bold: false, underline: false}
   name: share_with_text_box
