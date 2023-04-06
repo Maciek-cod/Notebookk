@@ -86,21 +86,6 @@ class SharedWith(SharedWithTemplate):
       alert(f'You successfully shared {self.notebook["name"]} with {user["name"]}')
     self.open_alert()
 
-  # Is this 'enter' necessary?
-  def share_with_text_box_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    user = self.check_if_user_exist()
-    read_only = False
-    if user:
-      sharing = self.check_if_user_is_not_sharing_the_notebook_already(user, self.notebook)
-      if sharing:
-        self.user_in_notebook_label.visible = True
-      else:
-        if self.read_only_check_box.checked:
-          read_only = True
-        self.add_user_to_notebook_users(user, read_only)
-      self.read_only_check_box.checked = False
-
   def share_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     user = self.check_if_user_exist()

@@ -58,13 +58,6 @@ class NoteNew(NoteNewTemplate):
 
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
-    
-  def clear_input_fields(self, **kw):
-    self.title_text_box.text = ''
-    self.quill.setContents(json.loads('[{"insert":"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n"}]'))
-    self.notebooks_drop_down.selected_value = None
-    self.title_missing_lbl.visible = False
-    self.notebook_missing_lbl.visible =False
 
   def save_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -87,6 +80,5 @@ class NoteNew(NoteNewTemplate):
 
   def go_back_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    self.clear_input_fields()
     get_open_form().content_panel.clear()
-    get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
+    get_open_form().content_panel.add_component(NoteEdit(note=None))

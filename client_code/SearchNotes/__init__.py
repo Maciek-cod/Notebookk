@@ -95,10 +95,8 @@ class SearchNotes(SearchNotesTemplate):
     
   def close_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    self.search_text_box.text = ''
-    self.show_or_hide_editor(False)
     get_open_form().content_panel.clear()
-    get_open_form().content_panel.add_component(NoteEdit(note_nr=None))
+    get_open_form().content_panel.add_component(NoteEdit(note=None))
 
   def search_text_box_show(self, **event_args):
     """This method is called when the TextBox is shown on the screen"""
@@ -137,5 +135,4 @@ class SearchNotes(SearchNotesTemplate):
     anvil.server.call('update_note', self.item, note_edited)
     get_open_form().refresh_notebooks()
     self.search_text_box_change()
-    self.refresh_data_bindings()
     Notification("",title=f"{note_edited['title']} saved!", timeout=2).show()

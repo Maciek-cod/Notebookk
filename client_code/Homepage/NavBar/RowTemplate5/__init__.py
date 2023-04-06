@@ -17,10 +17,5 @@ class RowTemplate5(RowTemplate5Template):
 
   def note_title_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    # get_open_form().new_note_button.visible = True
-    # get_open_form().search_button.visible = True
-    get_open_form().content_panel.raise_event_on_children('x-clear-input-fields')
     get_open_form().content_panel.clear()
     get_open_form().content_panel.add_component(NoteEdit(self.item))
-
-

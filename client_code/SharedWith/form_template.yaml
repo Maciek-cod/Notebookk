@@ -48,7 +48,7 @@ components:
     italic: false, background: '', bold: false, underline: false}
   name: share_with_text_box
   layout_properties: {grid_position: 'KBVARB,RKQMRF'}
-  event_bindings: {pressed_enter: share_with_text_box_pressed_enter, show: share_with_text_box_show}
+  event_bindings: {show: share_with_text_box_show}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
     visible: false, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -58,7 +58,7 @@ components:
   layout_properties: {grid_position: 'WQRCBL,JHKMZY'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-    visible: false, text: Invalid user name..., font_size: null, font: '', spacing_above: small,
+    visible: false, text: Invalid email..., font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: false, icon: ''}
   name: invalid_name_lbl
