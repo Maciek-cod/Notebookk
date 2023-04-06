@@ -117,19 +117,13 @@ def save_new_note(note_dict):
   
 @anvil.server.callable
 def seve_new_notebook(notebook_name):
-  last_notebook = app_tables.notebooks.client_writable().search(tables.order_by("id", ascending=False))[0]
-  last_notebook_id = last_notebook['id']
-  new_nr_id = last_notebook_id + 1
-  notebook = app_tables.notebooks.client_writable().add_row(id=new_nr_id, name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
+  notebook = app_tables.notebooks.client_writable().add_row(name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
   create_new_note(notebook)
   return notebook
 
 @anvil.server.callable
 def create_notebook_with_welcoming_note():
-  last_notebook = app_tables.notebooks.client_writable().search(tables.order_by("id", ascending=False))[0]
-  last_notebook_id = last_notebook['id']
-  new_nr_id = last_notebook_id + 1
-  notebook = app_tables.notebooks.client_writable().add_row(id=new_nr_id, name=f'Welcome {current_user["name"]}!', updated=datetime.now() ,owner=current_user, users=[current_user])
+  notebook = app_tables.notebooks.client_writable().add_row(name=f'Welcome {current_user["name"]}!', updated=datetime.now() ,owner=current_user, users=[current_user])
   create_welcoming_note(notebook)
         
 def verify_user_permission_notebook(notebook):
