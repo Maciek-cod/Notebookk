@@ -14,7 +14,7 @@ services:
 startup: {type: form, module: Homepage}
 package_name: Notebook
 allow_embedding: false
-name: Clone of Notebook
+name: Notebook
 runtime_options:
   version: 2
   client_version: '3'
