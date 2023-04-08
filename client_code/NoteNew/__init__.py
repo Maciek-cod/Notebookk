@@ -17,7 +17,6 @@ class NoteNew(NoteNewTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
     current_user = anvil.users.get_user()
     

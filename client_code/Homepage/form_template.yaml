@@ -80,6 +80,7 @@ components:
       slot: nav-right
     event_bindings: {click: new_note_button_click}
 - type: ColumnPanel
-  properties: {}
+  properties: {col_widths: '{}'}
   name: content_panel
   layout_properties: {slot: default}
+  components: []

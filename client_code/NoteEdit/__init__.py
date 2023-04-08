@@ -104,3 +104,7 @@ class NoteEdit(NoteEditTemplate):
     get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()  
     self.refresh_data_bindings()
     Notification("",title=f"{note_edited['title']} saved!", timeout=2).show()
+
+  def notebooks_drop_down_change(self, **event_args):
+    """This method is called when an item is selected"""
+    print(self, self.parent, self.parent.parent, self.parent.parent.parent)
