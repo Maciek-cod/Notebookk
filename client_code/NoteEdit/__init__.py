@@ -55,7 +55,6 @@ class NoteEdit(NoteEditTemplate):
     else:
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
       self.quill.setContents(json.loads(self.item['content_json']))
-    
 
     # Check what restricrions the user has.
     if self.item['notebook']['users_read_only'] is not None:
@@ -101,7 +100,6 @@ class NoteEdit(NoteEditTemplate):
     
     # Aby zobaczyc co jest w srodku obiektu python uzyj 'dir()':
     # print(dir(get_open_form().notebooks_panel))
-    # print(get_open_form().notebooks_panel.get_components()[0])
     
     get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()  
     self.refresh_data_bindings()

@@ -75,8 +75,3 @@ class RowTemplate4(RowTemplate4Template):
     alert(content=SharedWith(self.item),
                title=f"{self.item['name']} Notebook",
                buttons=[])
-
-
-
-
-
