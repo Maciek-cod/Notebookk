@@ -118,4 +118,20 @@ db_schema:
     - name: email_confirmation_key
       admin_ui: {width: 200}
       type: string
+  permission:
+    client: none
+    server: full
+    columns:
+    - name: notebook
+      admin_ui: {order: 0, width: 200}
+      type: link_single
+      target: notebooks
+    - name: user
+      admin_ui: {order: 1, width: 200}
+      type: link_single
+      target: users
+    - name: can_edit
+      admin_ui: {order: 2, width: 200}
+      type: bool
+    title: Permission
 renamed: true

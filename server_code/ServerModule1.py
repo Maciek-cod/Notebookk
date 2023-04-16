@@ -13,12 +13,12 @@ current_user = anvil.users.get_user()
 
 @anvil.server.callable
 def save_user_name(name):
-  user = app_tables.users.client_writable().get_by_id(anvil.users.get_user().get_id())
+  user = app_tables.users.get_by_id(anvil.users.get_user().get_id())
   user.update(name=name)
 
 @anvil.server.callable
 def find_user(email):
-  user = app_tables.users.client_readable().get(email=email)
+  user = app_tables.users.get(email=email)
   return user if user else False
 
 @anvil.server.callable
@@ -48,7 +48,7 @@ def stop_sharing_notebook_with_user(notebook, user):
 @anvil.server.callable
 def get_all_notebooks():
   if current_user is not None:
-    return app_tables.notebooks.client_writable().search(tables.order_by("updated", ascending=False), users=[current_user])
+    return app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])
   raise Exception("User is not logged in.")
   
 @anvil.server.callable
@@ -69,24 +69,25 @@ def get_all_notebook_names():
 @anvil.server.callable
 def get_the_last_note(notebook): 
   if current_user is not None:
-    return app_tables.notes.client_writable().search(tables.order_by("updated", ascending=False), notebook=notebook)[0]
+    return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=notebook)[0]
   raise Exception("User is not logged in.")
 
 @anvil.server.callable
 def get_one_before_the_last_note_from_the_notebook(note):
   try:
-    return app_tables.notes.client_writable().search(tables.order_by("updated", ascending=False), notebook=note['notebook'])[1]
+    return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=note['notebook'])[1]
   except:
     return None
     
 @anvil.server.callable
 def get_note_by_id(note):
   if current_user is not None:
-    return app_tables.notes.client_writable().get_by_id(note.get_id())
+    return app_tables.notes.get_by_id(note.get_id())
   
 @anvil.server.callable
 def get_all_notes_in_the_notebook(notebook):
-  return app_tables.notes.client_writable().search(tables.order_by("updated", ascending=False), notebook=notebook)
+  notebook = app_tables.notebooks.get_by_id(notebook.get_id())
+  return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=notebook)
   
 def create_new_note(notebook):
   new_note = {}
@@ -106,24 +107,24 @@ def create_welcoming_note(notebook):
 
 @anvil.server.callable
 def save_new_note(note_dict):
-  app_tables.notes.client_writable().add_row(
+  app_tables.notes.add_row(
           updated=datetime.now(), 
           edited_by=current_user, 
           **note_dict
   )
   # update notebook 'updated time'
-  notebook = app_tables.notebooks.client_readable().get_by_id(note_dict['notebook'].get_id())
+  notebook = app_tables.notebooks.get_by_id(note_dict['notebook'].get_id())
   notebook.update(updated=datetime.now())
   
 @anvil.server.callable
 def seve_new_notebook(notebook_name):
-  notebook = app_tables.notebooks.client_writable().add_row(name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
+  notebook = app_tables.notebooks.add_row(name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
   create_new_note(notebook)
   return notebook
 
 @anvil.server.callable
 def create_notebook_with_welcoming_note():
-  notebook = app_tables.notebooks.client_writable().add_row(name=f'Welcome {current_user["name"]}!', updated=datetime.now() ,owner=current_user, users=[current_user])
+  notebook = app_tables.notebooks.add_row(name=f'Welcome {current_user["name"]}!', updated=datetime.now() ,owner=current_user, users=[current_user])
   create_welcoming_note(notebook)
         
 def verify_user_permission_notebook(notebook):
@@ -139,7 +140,7 @@ def update_note(note, note_dict):
     note_dict['edited_by'] = current_user
     note.update(**note_dict)
     # update notebook 'updated' time field
-    notebook = app_tables.notebooks.client_readable().get_by_id(note['notebook'].get_id())
+    notebook = app_tables.notebooks.get_by_id(note['notebook'].get_id())
     notebook.update(updated=datetime.now())
   else:
     raise Exception("Note does not exist or does not belong to this user")
@@ -155,8 +156,8 @@ def update_notebook(notebook, notebook_dict):
 def delete_note(note):
   if verify_user_permission_notebook(note['notebook']):
     # Change 'updated' in notebook table to the last note
-    notebook = app_tables.notebooks.client_readable().get_by_id(note['notebook'].get_id())
-    last_note = app_tables.notes.client_writable().search(tables.order_by("id", ascending=False))[:2]
+    notebook = app_tables.notebooks.get_by_id(note['notebook'].get_id())
+    last_note = app_tables.notes.search(tables.order_by("updated", ascending=False))[:2]
     last_note_l = list(last_note)
     if note == last_note_l[0]: notebook.update(updated=last_note_l[1]['updated'])
     note.delete()
@@ -164,7 +165,7 @@ def delete_note(note):
     raise Exception("Note does not exist or does not belong to this user")
 
 def delete_notes_assigned_to_the_deleting_notebook(notebook):
-  notes = app_tables.notes.client_writable().search(notebook=notebook)
+  notes = app_tables.notes.search(notebook=notebook)
   for note in notes: note.delete()
 
 @anvil.server.callable
