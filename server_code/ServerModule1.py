@@ -25,12 +25,23 @@ def find_user(email):
 def add_user_to_notebook_users(notebook, user, read_only):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
   notebook['users'] += [user]
-  if read_only:
-    if notebook['users_read_only'] is None:
-      notebook['users_read_only'] = []
-    notebook['users_read_only'] += [user]
   notebook.update(users=notebook['users'])
+  if read_only:
+    app_tables.permission.add_row(notebook=notebook ,user=user ,can_edit=True)
+  else:
+    app_tables.permission.add_row(notebook=notebook ,user=user ,can_edit=False)
+      
 
+# @anvil.server.callable
+# def add_user_to_notebook_users(notebook, user, read_only):
+#   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
+#   notebook['users'] += [user]
+#   if read_only:
+#     if notebook['users_read_only'] is None:
+#       notebook['users_read_only'] = []
+#     notebook['users_read_only'] += [user]
+#   notebook.update(users=notebook['users'])
+  
 @anvil.server.callable
 def remove_user_from_the_notebook_users(notebook):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())

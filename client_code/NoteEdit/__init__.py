@@ -57,6 +57,9 @@ class NoteEdit(NoteEditTemplate):
       self.quill.setContents(json.loads(self.item['content_json']))
 
     # Check what restricrions the user has.
+
+    # anvil.server.call('')
+    
     if self.item['notebook']['users_read_only'] is not None:
       for user in self.item['notebook']['users_read_only']:
         if user == anvil.users.get_user():
