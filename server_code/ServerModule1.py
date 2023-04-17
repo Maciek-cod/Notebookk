@@ -61,12 +61,7 @@ def get_all_notebooks():
 @anvil.server.callable
 def get_all_notebook_names():
   if current_user is not None:
-    notebooks = app_tables.permission.search(user=current_user)
-    lis = []
-    for nbk in notebooks:
-      if nbk['can_edit'] == True:
-        lis.append(nbk)
-    return [(nbook['notebook']['name'], nbook) for nbook in lis]
+    return [(nbook['name'], nbook) for nbook in app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])]
   raise Exception("User is not logged in.")
   
 @anvil.server.callable

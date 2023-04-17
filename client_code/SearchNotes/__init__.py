@@ -16,33 +16,8 @@ class SearchNotes(SearchNotesTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    element = anvil.js.get_dom_node(self.quill_editor_panel)
-    self.quill = Quill( element, {
-        'modules': { 'toolbar': {
-          'container': [
-            [{'header': [1, 2, 3, 4, 5, 6, False]}],
-            [{'color': []}, {'background': []}],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{'list': 'ordered'}, {'list': 'bullet'}],
-            [{'script': 'sub'}, {'script': 'super'}],
-            [{'indent': '-1'}, {'indent': '+1'}],
-            [{'direction': 'rtl'}],
-            [{'align': []}],
-            ['blockquote', 'code-block'],
-            ['link', 'image'],
-            ['clean']
-          ]}},
-        'theme': 'snow',
-        'placeholder': 'Start typing here...'
-    })
     
     self.note_panel.visible = False
-
-    self.quill.keyboard.addBinding({
-          'key': 'S',
-          'shortKey': True
-          }, self.handle_quill_keydown_ctrl_s)
 
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
@@ -69,29 +44,67 @@ class SearchNotes(SearchNotesTemplate):
       self.notebook_label.visible = False
       self.notebooks_drop_down.visible = False
       self.quill_editor_panel.visible = False
-
+  
   def show_searched_note(self, note, **event_args):
     try:
       self.item = note
-      self.quill.setContents(json.loads(self.item['content_json']))
       
       # Check the permission the current user has
       editable = anvil.server.call('check_user_permission', note=self.item)
-      self.quill.enable(True)
-      self.save_button.enabled = True
-      self.delete_note_button.enabled = True
-      self.notebooks_drop_down.enabled = True
+      element = anvil.js.get_dom_node(self.quill_editor_panel)
+      
       if not editable:
+        self.quill = Quill( element, {
+            'modules': { 'toolbar': False},
+            'theme': 'snow',
+            'placeholder': 'Start typing here...'
+        })
+
         self.quill.enable(False)
         self.save_button.enabled = False
         self.delete_note_button.enabled = False
         self.notebooks_drop_down.enabled = False
-            
+      else:
+        self.quill = Quill( element, {
+            'modules': { 'toolbar': {
+              'container': [
+                [{'header': [1, 2, 3, 4, 5, 6, False]}],
+                [{'color': []}, {'background': []}],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{'list': 'ordered'}, {'list': 'bullet'}],
+                [{'script': 'sub'}, {'script': 'super'}],
+                [{'indent': '-1'}, {'indent': '+1'}],
+                [{'direction': 'rtl'}],
+                [{'align': []}],
+                ['blockquote', 'code-block'],
+                ['link', 'image'],
+                ['clean']
+              ]}},
+            'theme': 'snow',
+            'placeholder': 'Start typing here...'
+        })
+
+        self.save_button.enabled = True
+        self.delete_note_button.enabled = True
+        self.notebooks_drop_down.enabled = True
+  
+      self.quill.keyboard.addBinding({
+        'key': 'S',
+        'shortKey': True
+        }, self.handle_quill_keydown_ctrl_s)
+
+      self.quill.setContents(json.loads(self.item['content_json']))
+      
       self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
-      self.show_or_hide_editor(True)
+      self.show_or_hide_editor(True)  
     except:
       self.show_or_hide_editor(False)
-    
+
+
+
+
+
+  
   def close_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     get_open_form().content_panel.clear()

@@ -17,35 +17,9 @@ class NoteEdit(NoteEditTemplate):
     self.init_components(**properties)
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
     
-    element = anvil.js.get_dom_node(self.quill_editor)
-    self.quill = Quill( element, {
-        'modules': { 'toolbar': {
-          'container': [
-            [{'header': [1, 2, 3, 4, 5, 6, False]}],
-            [{'color': []}, {'background': []}],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{'list': 'ordered'}, {'list': 'bullet'}],
-            [{'script': 'sub'}, {'script': 'super'}],
-            [{'indent': '-1'}, {'indent': '+1'}],
-            [{'direction': 'rtl'}],
-            [{'align': []}],
-            ['blockquote', 'code-block'],
-            ['link', 'image'],
-            ['clean']
-          ]}},
-        'theme': 'snow',
-        'placeholder': 'Start typing here...'
-    })
-      
-    self.quill.keyboard.addBinding({
-        'key': 'S',
-        'shortKey': True
-      }, self.handle_quill_keydown_ctrl_s)
-    
     if note:
       try:
         self.item = anvil.server.call('get_note_by_id', note)
-        self.quill.setContents(json.loads(self.item['content_json']))
       except:
         # the item doesn't exist!
         get_open_form().content_panel.clear()
@@ -53,16 +27,49 @@ class NoteEdit(NoteEditTemplate):
         alert(f"It looks like Note requested doesn't exist")
     else:
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
-      self.quill.setContents(json.loads(self.item['content_json']))
 
     # Check the permission the current user has
     editable = anvil.server.call('check_user_permission', note=self.item)
+    element = anvil.js.get_dom_node(self.quill_editor)
     if not editable:
+      self.quill = Quill( element, {
+          'modules': { 'toolbar': False},
+          'theme': 'snow',
+          'placeholder': 'Start typing here...'
+      })
+    
       self.quill.enable(False)
       self.save_button.enabled = False
       self.delete_note_button.enabled = False
       self.notebooks_drop_down.enabled = False
+
+    else:
+      self.quill = Quill( element, {
+          'modules': { 'toolbar': {
+            'container': [
+              [{'header': [1, 2, 3, 4, 5, 6, False]}],
+              [{'color': []}, {'background': []}],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{'list': 'ordered'}, {'list': 'bullet'}],
+              [{'script': 'sub'}, {'script': 'super'}],
+              [{'indent': '-1'}, {'indent': '+1'}],
+              [{'direction': 'rtl'}],
+              [{'align': []}],
+              ['blockquote', 'code-block'],
+              ['link', 'image'],
+              ['clean']
+            ]}},
+          'theme': 'snow',
+          'placeholder': 'Start typing here...'
+      })
+      
+    self.quill.setContents(json.loads(self.item['content_json']))
     
+    self.quill.keyboard.addBinding({
+        'key': 'S',
+        'shortKey': True
+      }, self.handle_quill_keydown_ctrl_s)
+
     self.set_event_handler('x-refresh-notes', self.refresh_notes)
     
   def handle_quill_keydown_ctrl_s(self, event_name, els):
