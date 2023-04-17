@@ -11,7 +11,6 @@ from anvil.tables import app_tables
 from anvil.js.window import Quill
 import json
 
-
 class NoteEdit(NoteEditTemplate):
   def __init__(self, note, **properties):
     # Set Form properties and Data Bindings.
@@ -56,22 +55,13 @@ class NoteEdit(NoteEditTemplate):
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
       self.quill.setContents(json.loads(self.item['content_json']))
 
-    # Check what restricrions the user has.
+    # Check the permission the current user has
     editable = anvil.server.call('check_user_permission', note=self.item)
     if not editable:
-      if user == anvil.users.get_user():
-          self.quill.enable(False)
-          self.save_button.enabled = False
-          self.delete_note_button.enabled = False
-          self.notebooks_drop_down.enabled = False
-    
-    # if self.item['notebook']['users_read_only'] is not None:
-    #   for user in self.item['notebook']['users_read_only']:
-    #     if user == anvil.users.get_user():
-    #       self.quill.enable(False)
-    #       self.save_button.enabled = False
-    #       self.delete_note_button.enabled = False
-    #       self.notebooks_drop_down.enabled = False
+      self.quill.enable(False)
+      self.save_button.enabled = False
+      self.delete_note_button.enabled = False
+      self.notebooks_drop_down.enabled = False
     
     self.set_event_handler('x-refresh-notes', self.refresh_notes)
     

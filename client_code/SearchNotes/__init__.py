@@ -75,30 +75,17 @@ class SearchNotes(SearchNotesTemplate):
       self.item = note
       self.quill.setContents(json.loads(self.item['content_json']))
       
-      # Check what restricrions the user has.
+      # Check the permission the current user has
       editable = anvil.server.call('check_user_permission', note=self.item)
       self.quill.enable(True)
       self.save_button.enabled = True
       self.delete_note_button.enabled = True
       self.notebooks_drop_down.enabled = True
       if not editable:
-        if user == anvil.users.get_user():
-            self.quill.enable(False)
-            self.save_button.enabled = False
-            self.delete_note_button.enabled = False
-            self.notebooks_drop_down.enabled = False
-      
-      # self.quill.enable(True)
-      # self.save_button.enabled = True
-      # self.delete_note_button.enabled = True
-      # self.notebooks_drop_down.enabled = True
-      # if self.item['notebook']['users_read_only'] is not None:
-      #   for user in self.item['notebook']['users_read_only']:
-      #     if user == anvil.users.get_user():
-      #       self.quill.enable(False)
-      #       self.save_button.enabled = False
-      #       self.delete_note_button.enabled = False
-      #       self.notebooks_drop_down.enabled = False
+        self.quill.enable(False)
+        self.save_button.enabled = False
+        self.delete_note_button.enabled = False
+        self.notebooks_drop_down.enabled = False
             
       self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
       self.show_or_hide_editor(True)

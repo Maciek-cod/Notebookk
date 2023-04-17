@@ -50,10 +50,8 @@ def remove_user_from_the_notebook_users(notebook):
 
 @anvil.server.callable
 def check_user_permission(note):
-  notebook_permissions = app_tables.permission.search(notebook=note['notebook'])
-  for user_in_notebook in notebook_permissions:
-    if user_in_notebook == current_user:
-      return user_in_notebook['can_edit']
+  user_permission = app_tables.permission.get(notebook=note['notebook'], user=current_user)
+  return user_permission['can_edit']
 
 @anvil.server.callable
 def stop_sharing_notebook_with_user(notebook, user):
