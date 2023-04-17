@@ -35,6 +35,16 @@
   var ln = $('.structure > .nav-holder > .left-nav');
   var lnp = $('.structure > .nav-holder > .left-nav-placeholder');
   var appBar = $('.app-bar')[0];
+
+  function hideQuillToolbar() {
+        var toolbar = document.querySelector('.ql-toolbar');
+            toolbar.style.display = 'none';
+    }
+  
+  function showQuillToolbar() {
+        var toolbar = document.querySelector('.ql-toolbar');
+            toolbar.style.display = '';
+    }
   
   function hideSidebar() {
     ln.animate({left: -ln.outerWidth()}, function() {
@@ -76,6 +86,7 @@
   //     $('.nav-shield').trigger('click');
   //   }
   // });
+
   
   document.addEventListener('scroll', function(event) {
     if (appBar.classList.contains('scrolled')) {
