@@ -37,12 +37,10 @@ class NoteEdit(NoteEditTemplate):
           'theme': 'snow',
           'placeholder': 'Start typing here...'
       })
-    
       self.quill.enable(False)
       self.save_button.enabled = False
       self.delete_note_button.enabled = False
       self.notebooks_drop_down.enabled = False
-
     else:
       self.quill = Quill( element, {
           'modules': { 'toolbar': {
