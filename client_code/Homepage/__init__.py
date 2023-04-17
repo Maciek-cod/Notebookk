@@ -35,7 +35,7 @@ class Homepage(HomepageTemplate):
     
   def refresh_notebooks(self):
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
-
+    
   def edit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     alert(content=NotebookEdit(),

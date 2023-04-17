@@ -24,10 +24,14 @@ class NotebookEdit(NotebookEditTemplate):
     self.validator = validation.Validator()
     self.validator.require_text_field(self.new_notebook_text_box, self.name_missing_lbl)
     self.notebooks_names_panel.set_event_handler('x-delete-notebook', self.delete_notebook)
-    
+    self.set_event_handler('x-close-notebookedit', self.close_notebookedit)
+  
   def refresh_notebooks(self, **event_args):
     self.notebooks_names_panel.items = anvil.server.call('get_all_notebooks')
 
+  def close_notebookedit(self, **event_args):
+    self.raise_event("x-close-alert")
+    
   def delete_notebook(self, notebook, **event_args):
     anvil.server.call('delete_notebook', notebook)
     get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=anvil.server.call('get_all_notebooks')[0])
