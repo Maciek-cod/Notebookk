@@ -71,7 +71,7 @@ components:
       name: notebook_name_text_box
       layout_properties: {column: ODAHLD, grid_position: 'YKHSJI,UZBHIF'}
       data_bindings:
-      - {property: text, code: 'self.item[''name'']', writeback: true}
+      - {property: text, code: 'self.item[''name'']', writeback: false}
       event_bindings: {pressed_enter: notebook_name_text_box_pressed_enter, show: notebook_name_text_box_show}
     - type: ColumnPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,

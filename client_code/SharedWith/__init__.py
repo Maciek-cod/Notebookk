@@ -118,9 +118,3 @@ class SharedWith(SharedWithTemplate):
       self.raise_event("x-close-alert")
       alert(f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.')
       get_open_form().edit_button_click()
-
-  # def check_if_user_has_read_access_only(self, user, **event_args):
-  #   if self.notebook['users_read_only'] is None: return False
-  #   for u in self.notebook['users_read_only']: 
-  #     if user == u: return True
-  #   return False
