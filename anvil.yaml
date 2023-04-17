@@ -12,15 +12,15 @@ services:
   client_config: {}
   server_config: {}
 startup: {type: form, module: Homepage}
-package_name: Notebook
+package_name: Notebookk
 allow_embedding: false
-name: Notebook
+name: Notebookk
 runtime_options:
   version: 2
   client_version: '3'
   server_version: python3-sandbox
   server_spec: {base: python310-standard}
-metadata: {title: Notebook, description: Everyday note app}
+metadata: {title: Notebookk, description: Everyday note app}
 startup_form: null
 native_deps: {head_html: '<!-- Main Quill library -->
 
