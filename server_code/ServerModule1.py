@@ -30,23 +30,14 @@ def add_user_to_notebook_users(notebook, user, read_only):
     app_tables.permission.add_row(notebook=notebook ,user=user ,can_edit=True)
   else:
     app_tables.permission.add_row(notebook=notebook ,user=user ,can_edit=False)
-      
-
-# @anvil.server.callable
-# def add_user_to_notebook_users(notebook, user, read_only):
-#   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
-#   notebook['users'] += [user]
-#   if read_only:
-#     if notebook['users_read_only'] is None:
-#       notebook['users_read_only'] = []
-#     notebook['users_read_only'] += [user]
-#   notebook.update(users=notebook['users'])
   
 @anvil.server.callable
 def remove_user_from_the_notebook_users(notebook):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
   notebook['users'] = [u for u in notebook['users'] if u != current_user]
   notebook.update(users=notebook['users'])
+  permision = app_tables.permission.get(notebook=notebook, user=current_user)
+  permision.delete()
 
 @anvil.server.callable
 def check_user_permission(note):
@@ -57,9 +48,9 @@ def check_user_permission(note):
 def stop_sharing_notebook_with_user(notebook, user):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
   notebook['users'] = [u for u in notebook['users'] if u != user]
-  if notebook['users_read_only'] is not None:
-    notebook['users_read_only'] = [u for u in notebook['users_read_only'] if u != user]
   notebook.update(users=notebook['users'])
+  permision = app_tables.permission.get(notebook=notebook, user=user)
+  permision.delete()
 
 @anvil.server.callable
 def get_all_notebooks():
@@ -70,16 +61,12 @@ def get_all_notebooks():
 @anvil.server.callable
 def get_all_notebook_names():
   if current_user is not None:
-    nbook = app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])
+    notebooks = app_tables.permission.search(user=current_user)
     lis = []
-    for nbk in nbook:
-      if nbk['users_read_only'] is None: lis.append(nbk)
-      else:
-        donot = False
-        for user in nbk['users_read_only']:
-          if user == current_user: donot = True
-        if not donot: lis.append(nbk)
-    return [(nbook['name'], nbook) for nbook in lis]
+    for nbk in notebooks:
+      if nbk['can_edit'] == True:
+        lis.append(nbk)
+    return [(nbook['notebook']['name'], nbook) for nbook in lis]
   raise Exception("User is not logged in.")
   
 @anvil.server.callable

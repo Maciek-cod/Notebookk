@@ -89,15 +89,15 @@ class SharedWith(SharedWithTemplate):
   def share_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     user = self.check_if_user_exist()
-    read_only = False
+    editable = True
     if user:
       sharing = self.check_if_user_is_not_sharing_the_notebook_already(user, self.notebook)
       if sharing:
         self.user_in_notebook_label.visible = True
       else:
         if self.read_only_check_box.checked:
-          read_only = True
-        self.add_user_to_notebook_users(user, read_only)
+          editable = False
+        self.add_user_to_notebook_users(user, editable)
       self.read_only_check_box.checked = False
 
   def leave_button_click(self, **event_args):

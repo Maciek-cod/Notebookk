@@ -18,7 +18,7 @@ class RowTemplate1(RowTemplate1Template):
   def remove_user_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to stop sharing with: {}?".format(self.item['name'])):
-      self.parent.parent.parent.stop_sharing_notebook_with_user(self.item) # How to change parent.parent.parent ???????? 
+      self.parent.parent.parent.stop_sharing_notebook_with_user(self.item) 
 
   def user_name_link_click(self, **event_args):
     """This method is called when the link is clicked"""

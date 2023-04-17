@@ -95,10 +95,6 @@ class NoteEdit(NoteEditTemplate):
     note_edited['content'] = self.quill.getText()
     anvil.server.call('update_note', self.item, note_edited)
     get_open_form().refresh_notebooks()
-    
-    # Aby zobaczyc co jest w srodku obiektu python uzyj 'dir()':
-    # print(dir(get_open_form().notebooks_panel))
-    
     get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()  
     self.refresh_data_bindings()
     Notification("",title=f"{note_edited['title']} saved!", timeout=2).show()
@@ -106,3 +102,6 @@ class NoteEdit(NoteEditTemplate):
   def notebooks_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
     print(self, self.parent, self.parent.parent, self.parent.parent.parent)
+
+    # Aby zobaczyc co jest w srodku obiektu python uzyj 'dir()':
+    # print(dir(get_open_form().notebooks_panel))

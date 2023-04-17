@@ -38,11 +38,10 @@ class Homepage(HomepageTemplate):
 
   def edit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    alert(
-      content=NotebookEdit(),
-      title="Edit Notebooks",
-      large=True,
-      buttons=[])
+    alert(content=NotebookEdit(),
+          title="Edit Notebooks",
+          large=True,
+          buttons=[])
     
   def new_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
