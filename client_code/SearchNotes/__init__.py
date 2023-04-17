@@ -8,15 +8,13 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from ..NoteEdit import NoteEdit
 from anvil.js.window import Quill
 import json
-from ..NoteEdit import NoteEdit
 
 class SearchNotes(SearchNotesTemplate):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
     self.note_panel.visible = False
     element = anvil.js.get_dom_node(self.quill_editor_panel)
     self.quill = Quill( element, {
@@ -42,7 +40,6 @@ class SearchNotes(SearchNotesTemplate):
         'shortKey': True
         }, self.handle_quill_keydown_ctrl_s)
 
-    
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
     
@@ -86,13 +83,16 @@ class SearchNotes(SearchNotesTemplate):
         self.save_button.enabled = True
         self.delete_note_button.enabled = True
         self.notebooks_drop_down.enabled = True
-
       self.quill.setContents(json.loads(self.item['content_json']))
       self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
       self.show_or_hide_editor(True)  
     except:
       self.show_or_hide_editor(False)
-  
+
+  def search_text_box_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    self.search_text_box_change()
+    
   def close_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     get_open_form().content_panel.clear()
@@ -112,10 +112,6 @@ class SearchNotes(SearchNotesTemplate):
       if result:
         self.repeating_panel_1.items = result
         self.data_grid_1.visible = True
-
-  def search_text_box_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    self.search_text_box_change()
 
   def delete_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""

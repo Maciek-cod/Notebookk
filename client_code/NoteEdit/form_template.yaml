@@ -113,7 +113,7 @@ components:
         grid_position: KIQIIT,GJGQMK
       data_bindings:
       - {property: selected_value, code: 'self.item[''notebook'']', writeback: false}
-      event_bindings: {change: notebooks_drop_down_change}
+      event_bindings: {}
     - type: Button
       properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Save, font_size: null, font: '', spacing_above: small,

@@ -12,7 +12,6 @@ from ....NoteEdit import NoteEdit
 
 class RowTemplate5(RowTemplate5Template):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
   def note_title_link_click(self, **event_args):

@@ -12,10 +12,7 @@ from ...SharedWith import SharedWith
 
 class RowTemplate4(RowTemplate4Template):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    # Any code you write here will run before the form opens.
     if self.item['owner'] != anvil.users.get_user():
       self.edit_button.enabled = False
       self.delete_notebook_button.enabled = False
@@ -72,6 +69,7 @@ class RowTemplate4(RowTemplate4Template):
 
   def shared_with_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    alert(content=SharedWith(self.item),
+    shared_with_form = SharedWith(self.item, notebook_edit_form=self.parent.parent)
+    alert(content=shared_with_form,
                title=f"{self.item['name']} Notebook",
                buttons=[])

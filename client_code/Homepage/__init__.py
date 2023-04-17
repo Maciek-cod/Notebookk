@@ -14,13 +14,10 @@ from ..NotebookEdit import NotebookEdit
 from ..SearchNotes import SearchNotes
 from ..WelcomeAlert import WelcomeAlert
 
-
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # New user reqire a name
     anvil.users.login_with_form()
     current_user = anvil.users.get_user()
     if current_user['name'] == None:
@@ -29,7 +26,6 @@ class Homepage(HomepageTemplate):
             dismissible=False)
       
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
-    self.content_panel
     self.content_panel.clear()
     self.content_panel.add_component(NoteEdit(note=None))
     

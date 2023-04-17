@@ -14,23 +14,29 @@ from ..Homepage.NavBar import NavBar
 
 class NotebookEdit(NotebookEditTemplate):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    # Any code you write here will run before the form opens.
-
     self.notebooks_names_panel.items = anvil.server.call('get_all_notebooks')
-
     self.validator = validation.Validator()
     self.validator.require_text_field(self.new_notebook_text_box, self.name_missing_lbl)
     self.notebooks_names_panel.set_event_handler('x-delete-notebook', self.delete_notebook)
-    self.set_event_handler('x-close-notebookedit', self.close_notebookedit)
   
   def refresh_notebooks(self, **event_args):
     self.notebooks_names_panel.items = anvil.server.call('get_all_notebooks')
 
   def close_notebookedit(self, **event_args):
     self.raise_event("x-close-alert")
+    
+  def new_notebook_text_box_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    self.save_new_notebook()
+
+  def save_notebook_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.save_new_notebook()
+
+  def new_notebook_text_box_show(self, **event_args):
+    """This method is called when the TextBox is shown on the screen"""
+    self.new_notebook_text_box.focus()
     
   def delete_notebook(self, notebook, **event_args):
     anvil.server.call('delete_notebook', notebook)
@@ -69,15 +75,3 @@ class NotebookEdit(NotebookEditTemplate):
       self.new_notebook_button.visible = True
     else:
       self.validator.show_all_errors()
-
-  def new_notebook_text_box_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    self.save_new_notebook()
-
-  def save_notebook_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    self.save_new_notebook()
-
-  def new_notebook_text_box_show(self, **event_args):
-    """This method is called when the TextBox is shown on the screen"""
-    self.new_notebook_text_box.focus()

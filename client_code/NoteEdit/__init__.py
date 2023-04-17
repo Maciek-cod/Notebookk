@@ -13,15 +13,14 @@ import json
 
 class NoteEdit(NoteEditTemplate):
   def __init__(self, note, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
+    self.set_event_handler('x-refresh-notes', self.refresh_notes)
     
     if note:
       try:
         self.item = anvil.server.call('get_note_by_id', note)
       except:
-        # the item doesn't exist!
         get_open_form().content_panel.clear()
         get_open_form().content_panel.add_component(NoteEdit())
         alert(f"It looks like Note requested doesn't exist")
@@ -58,17 +57,13 @@ class NoteEdit(NoteEditTemplate):
               ['clean']
             ]}},
           'theme': 'snow',
-          'placeholder': 'Start typing here...'
-      })
+          'placeholder': 'Start typing here...' })
       
     self.quill.setContents(json.loads(self.item['content_json']))
-    
     self.quill.keyboard.addBinding({
         'key': 'S',
         'shortKey': True
       }, self.handle_quill_keydown_ctrl_s)
-
-    self.set_event_handler('x-refresh-notes', self.refresh_notes)
     
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
@@ -103,10 +98,3 @@ class NoteEdit(NoteEditTemplate):
     get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()  
     self.refresh_data_bindings()
     Notification("",title=f"{note_edited['title']} saved!", timeout=2).show()
-
-  def notebooks_drop_down_change(self, **event_args):
-    """This method is called when an item is selected"""
-    print(self, self.parent, self.parent.parent, self.parent.parent.parent)
-
-    # Aby zobaczyc co jest w srodku obiektu python uzyj 'dir()':
-    # print(dir(get_open_form().notebooks_panel))

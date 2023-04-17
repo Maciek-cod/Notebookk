@@ -15,10 +15,9 @@ from ..NoteEdit import NoteEdit
 
 class NoteNew(NoteNewTemplate):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
     current_user = anvil.users.get_user()
+    self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
     
     element = anvil.js.get_dom_node(self.quill_editor_panel)
     self.quill = Quill( element, {
@@ -37,8 +36,7 @@ class NoteNew(NoteNewTemplate):
             ['clean']
           ]}},
         'theme': 'snow',
-        'placeholder': 'Start typing here...'
-    })
+        'placeholder': 'Start typing here...'})
     
     json_string_z_bazy = '[{"insert":"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n"}]'
     deltas_z_bazy = json.loads(json_string_z_bazy)
@@ -58,6 +56,15 @@ class NoteNew(NoteNewTemplate):
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
 
+  def title_text_box_show(self, **event_args):
+    """This method is called when the TextBox is shown on the screen"""
+    self.title_text_box.focus()
+
+  def go_back_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(NoteEdit(note=None))
+
   def save_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     if self.validator.is_valid():
@@ -72,12 +79,3 @@ class NoteNew(NoteNewTemplate):
       get_open_form().content_panel.add_component(NoteEdit(note=None))
     else:
       self.validator.show_all_errors()
-
-  def title_text_box_show(self, **event_args):
-    """This method is called when the TextBox is shown on the screen"""
-    self.title_text_box.focus()
-
-  def go_back_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    get_open_form().content_panel.clear()
-    get_open_form().content_panel.add_component(NoteEdit(note=None))
