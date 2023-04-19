@@ -83,10 +83,9 @@ def get_note_by_id(note):
     return app_tables.notes.get_by_id(note.get_id())
   
 @anvil.server.callable
-def get_all_notebooks():
-  if current_user is not None:
-    return app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])
-  raise Exception("User is not logged in.")
+def get_all_notes_in_the_notebook(notebook):
+  notebook = app_tables.notebooks.get_by_id(notebook.get_id())
+  return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=notebook)
   
 def create_new_note(notebook):
   new_note = {}

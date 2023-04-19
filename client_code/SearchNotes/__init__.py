@@ -50,7 +50,7 @@ class SearchNotes(SearchNotesTemplate):
       self.delete_note_button.visible = True
       self.save_button.visible = True
       self.updated_label.visible = True
-      self.autor_label.visible = True
+      self.author_label.visible = True
       self.notebook_label.visible = True
       self.notebooks_drop_down.visible = True
       self.quill_editor_panel.visible = True
@@ -61,7 +61,7 @@ class SearchNotes(SearchNotesTemplate):
       self.delete_note_button.visible = False
       self.save_button.visible = False
       self.updated_label.visible = False
-      self.autor_label.visible = False
+      self.author_label.visible = False
       self.notebook_label.visible = False
       self.notebooks_drop_down.visible = False
       self.quill_editor_panel.visible = False

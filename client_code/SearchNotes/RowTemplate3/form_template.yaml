@@ -5,9 +5,9 @@ container:
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: ColumnPanel
-  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: 'theme:On Primary'}
+    background: ''}
   name: column_panel_1
   layout_properties: {column: OAKFVL}
   components:

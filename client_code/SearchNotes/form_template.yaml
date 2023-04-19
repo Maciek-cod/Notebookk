@@ -111,7 +111,7 @@ components:
         visible: false, text: '', font_size: 13, font: '', spacing_above: small, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
-      name: autor_label
+      name: author_label
       layout_properties:
         col_widths: {}
         grid_position: BFBSFS,TVLDZT
