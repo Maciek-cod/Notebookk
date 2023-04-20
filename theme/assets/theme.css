@@ -59,6 +59,8 @@ a>.anvil-component-icon.right_edge-icon,
 .col-padding.col-padding-medium { padding: 0 8px; }
 .column-panel.col-padding-medium > .anvil-panel-section > .anvil-panel-section-container > .anvil-panel-section-gutter { margin: 0 -8px; }
 
+/* To put quill toolbar at the bottom of the note */
+
 .col-padding.col-padding-medium {
   display: flex;
   flex-direction: column-reverse; 
@@ -1066,6 +1068,8 @@ div.plot-container.plotly svg.main-svg {
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
   border-style: none;
 }
+
+/* quill picker options up */
 
 .ql-picker-options {
   top: unset !important;
