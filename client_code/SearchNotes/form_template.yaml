@@ -7,28 +7,28 @@ events:
   description: On click do something
 custom_component: false
 components:
+- type: Button
+  properties: {role: tonal-button, align: right, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Close, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: 'fa:times'}
+  name: close_button
+  layout_properties: {grid_position: 'BMWXSQ,HPNMKR', column: null}
+  event_bindings: {click: close_button_click}
+- type: Label
+  properties: {role: title, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: Search Notes, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: search_label
+  layout_properties: {grid_position: 'UAPLOM,MVZUHS'}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}', spacing_below: small,
     background: ''}
   name: column_panel_1
   layout_properties: {grid_position: 'DCOGWH,FSUVMN'}
-  components:
-  - type: Label
-    properties: {role: title, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Search Notes, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: search_label
-    layout_properties: {grid_position: 'TZWTCE,NTSZQC'}
-  - type: Button
-    properties: {role: tonal-button, align: right, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Close, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: 'fa:times'}
-    name: close_button
-    layout_properties: {grid_position: 'TZWTCE,RTBXDQ', column: null}
-    event_bindings: {click: close_button_click}
+  components: []
 - type: TextBox
   properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Search...,
     border: none, enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -39,32 +39,6 @@ components:
     col_widths: {}
     grid_position: SMFUJA,PSEQXK
   event_bindings: {show: search_text_box_show, change: search_text_box_change, pressed_enter: search_text_box_pressed_enter}
-- type: DataGrid
-  properties:
-    role: tonal-data-grid
-    columns:
-    - {id: OAKFVL, title: Column 1, data_key: column_1, $$hashKey: 'object:14620',
-      width: '', expand: true}
-    auto_header: false
-    tooltip: ''
-    border: ''
-    foreground: ''
-    rows_per_page: 4
-    visible: false
-    wrap_on: never
-    show_page_controls: true
-    spacing_above: small
-    spacing_below: small
-    background: ''
-  name: data_grid_1
-  layout_properties: {grid_position: 'UIIESU,UPKLAH', full_width_row: true}
-  components:
-  - type: RepeatingPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-      visible: true, spacing_above: none, spacing_below: none, item_template: SearchNotes.RowTemplate3,
-      background: ''}
-    name: repeating_panel_1
-    layout_properties: {}
 - type: ColumnPanel
   properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
@@ -193,8 +167,34 @@ components:
       col_widths: {}
       grid_position: QRHPNG,YBQABH
       full_width_row: true
+- type: DataGrid
+  properties:
+    role: tonal-data-grid
+    columns:
+    - {id: OAKFVL, title: Column 1, data_key: column_1, $$hashKey: 'object:14620',
+      width: '', expand: true}
+    auto_header: false
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 4
+    visible: false
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
+  name: data_grid_1
+  layout_properties: {grid_position: 'IEKRZV,QTTYEN', full_width_row: true}
+  components: []
+- type: RepeatingPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true,
+    spacing_above: none, spacing_below: none, item_template: SearchNotes.RowTemplate3,
+    background: ''}
+  name: repeating_panel_1
+  layout_properties: {grid_position: 'AXMUQJ,VEJFDC'}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"UPKLAH":15,"NYOOQE":45,"FSUVMN":50}',
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"NYOOQE":45,"FSUVMN":50}',
     spacing_below: small, background: ''}
