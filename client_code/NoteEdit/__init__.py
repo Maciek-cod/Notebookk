@@ -27,8 +27,12 @@ class NoteEdit(NoteEditTemplate):
     else:
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
 
-    # Check the permission the current user has
-    editable = anvil.server.call('check_user_permission', note=self.item)
+    note = self.item
+    self.check_user_permission(note)
+    
+  # Check the permission the current user has
+  def check_user_permission(self, note):
+    editable = anvil.server.call('check_user_permission', note=note)
     element = anvil.js.get_dom_node(self.quill_editor)
     if not editable:
       self.quill = Quill( element, {
@@ -58,7 +62,7 @@ class NoteEdit(NoteEditTemplate):
             ]}},
           'theme': 'snow',
           'placeholder': 'Start typing here...' })
-      
+    
     self.quill.setContents(json.loads(self.item['content_json']))
     self.quill.keyboard.addBinding({
         'key': 'S',
@@ -72,9 +76,11 @@ class NoteEdit(NoteEditTemplate):
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
     try:
       self.item = anvil.server.call('get_the_last_note', notebook)
+      self.check_user_permission(note=self.item)
       self.quill.setContents(json.loads(self.item['content_json']))
     except:
       self.item = anvil.server.call('get_the_last_note', notebook=anvil.server.call('get_all_notebooks')[0])
+      self.check_user_permission(note=self.item)
       self.quill.setContents(json.loads(self.item['content_json']))
 
   def delete_note_button_click(self, **event_args):
