@@ -17,7 +17,7 @@ from ..WelcomeAlert import WelcomeAlert
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
-
+    
     anvil.users.login_with_form()
     current_user = anvil.users.get_user()
     if current_user['name'] == None:
@@ -53,3 +53,10 @@ class Homepage(HomepageTemplate):
     note_deleted = note['title']
     anvil.server.call('delete_note', note)
     Notification("",title=f"{note_deleted} is gone!", timeout=2).show()
+
+  def log_out_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.users.logout()
+    self.notebooks_panel.items = None
+    self.content_panel.clear()
+    Homepage()

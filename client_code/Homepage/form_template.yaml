@@ -50,6 +50,14 @@ components:
       background: ''}
     name: notebooks_panel
     layout_properties: {}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Log Out, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: true, icon: ''}
+    name: log_out_button
+    layout_properties: {slot: footer}
+    event_bindings: {click: log_out_button_click}
 - type: FlowPanel
   properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
