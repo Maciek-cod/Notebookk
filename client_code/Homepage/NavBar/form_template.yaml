@@ -4,12 +4,14 @@ components:
   properties: {spacing_above: none, spacing_below: none, item_template: Homepage.NavBar.RowTemplate5}
   name: repeating_panel_1
   layout_properties: {column: null}
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"KKEMNN":45,"QYZHPD":15}',
-    spacing_below: none, background: ''}
-  name: column_panel_1
-  layout_properties: {column: STPZAD}
+- type: Link
+  properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, wrap_on: never, font: '', col_spacing: medium,
+    spacing_above: small, icon_align: left, col_widths: '{"PMFXHE":45,"VPSKXV":15}',
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: link_1
+  layout_properties: {column: STPZAD, grid_position: 'ZHIAGZ,OZTMFP'}
   components:
   - type: Link
     properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
@@ -17,17 +19,17 @@ components:
       spacing_above: small, icon_align: left, col_widths: '{}', spacing_below: small,
       italic: false, background: '', bold: false, underline: false, icon: ''}
     name: notebook_name_link
-    layout_properties: {column: STPZAD, grid_position: 'KFTKNG,KKEMNN'}
+    layout_properties: {column: STPZAD, grid_position: 'GWWRJV,PMFXHE'}
     data_bindings:
     - {property: text, code: 'self.item[''name'']'}
     event_bindings: {click: notebook_name_link_click}
     components: []
   - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none,
       icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
       underline: false, icon: 'fa:ellipsis-v'}
     name: notebook_menu_button
-    layout_properties: {grid_position: 'KFTKNG,QYZHPD'}
+    layout_properties: {grid_position: 'GWWRJV,VPSKXV', column: STPZAD}
     event_bindings: {click: notebook_menu_button_click}
 is_package: true
