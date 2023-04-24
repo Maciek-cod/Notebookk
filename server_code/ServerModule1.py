@@ -117,6 +117,7 @@ def save_new_note(note_dict):
 @anvil.server.callable
 def seve_new_notebook(notebook_name):
   notebook = app_tables.notebooks.add_row(name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
+  app_tables.permission.add_row(notebook=notebook ,user=current_user ,can_edit=True)
   create_new_note(notebook)
   return notebook
 
@@ -124,6 +125,7 @@ def seve_new_notebook(notebook_name):
 def create_notebook_with_welcoming_note():
   notebook = app_tables.notebooks.add_row(name=f'Welcome {current_user["name"]}!', updated=datetime.now() ,owner=current_user, users=[current_user])
   create_welcoming_note(notebook)
+  app_tables.permission.add_row(notebook=notebook ,user=current_user ,can_edit=True)
         
 def verify_user_permission_notebook(notebook):
   if current_user is not None:
@@ -170,6 +172,9 @@ def delete_notes_assigned_to_the_deleting_notebook(notebook):
 def delete_notebook(notebook):
   if verify_user_permission_notebook(notebook):
     delete_notes_assigned_to_the_deleting_notebook(notebook)
+    permissions = app_tables.permission.search(notebook=notebook)
+    for permission in permissions:
+      permission.delete()
     notebook.delete()
   else:
     raise Exception("Notebook does not exist or does not belong to this user")
