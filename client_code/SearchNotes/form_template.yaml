@@ -41,10 +41,9 @@ components:
   event_bindings: {show: search_text_box_show, change: search_text_box_change, pressed_enter: search_text_box_pressed_enter}
 - type: DataGrid
   properties:
-    role: tonal-data-grid
+    role: null
     columns:
-    - {id: OAKFVL, title: Column 1, data_key: column_1, $$hashKey: 'object:14620',
-      width: '', expand: true}
+    - {id: QOLMTK, title: Column 1, data_key: column_1, $$hashKey: 'object:3270'}
     auto_header: false
     tooltip: ''
     border: ''
@@ -57,14 +56,14 @@ components:
     spacing_below: small
     background: ''
   name: data_grid_1
-  layout_properties: {grid_position: 'UIIESU,IQXHIV', full_width_row: true}
+  layout_properties: {grid_position: 'UIIESU,UNUWND'}
   components:
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: none, spacing_below: none, item_template: SearchNotes.RowTemplate3,
       background: ''}
     name: repeating_panel_1
-    layout_properties: {grid_position: 'UIIESU,KEJHHQ GLYIIY,EHHHQH', slot: footer}
+    layout_properties: {grid_position: 'UIIESU,UNUWND DNXSYV,YDPBYM'}
 - type: ColumnPanel
   properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
@@ -196,5 +195,5 @@ components:
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"NYOOQE":45,"FSUVMN":50}',
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"NYOOQE":55,"FSUVMN":50,"UNUWND":20}',
     spacing_below: small, background: ''}

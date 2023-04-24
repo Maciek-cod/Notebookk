@@ -65,9 +65,9 @@ class NotebookEdit(NotebookEditTemplate):
       new_notebook_name = self.new_notebook_text_box.text
       new_notebook = anvil.server.call('save_new_notebook', new_notebook_name)
       self.refresh_notebooks()
+      get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=anvil.server.call('get_all_notebooks')[0])
       get_open_form().refresh_notebooks()
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()
-      get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=anvil.server.call('get_all_notebooks')[0])
       self.new_notebook_text_box.text = ''
       self.new_notebook_text_box.visible = False
       self.save_notebook_button.visible = False
