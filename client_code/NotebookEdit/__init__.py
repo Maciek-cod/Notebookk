@@ -11,6 +11,7 @@ from anvil.tables import app_tables
 
 from .. import validation
 from ..Homepage.NavBar import NavBar
+from ..NoteEdit import NoteEdit
 
 class NotebookEdit(NotebookEditTemplate):
   def __init__(self, **properties):
@@ -40,7 +41,8 @@ class NotebookEdit(NotebookEditTemplate):
     
   def delete_notebook(self, notebook, **event_args):
     anvil.server.call('delete_notebook', notebook)
-    get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=anvil.server.call('get_all_notebooks')[0])
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(NoteEdit(note=None))
     get_open_form().refresh_notebooks()
     self.refresh_notebooks()
 
@@ -65,7 +67,8 @@ class NotebookEdit(NotebookEditTemplate):
       new_notebook_name = self.new_notebook_text_box.text
       new_notebook = anvil.server.call('save_new_notebook', new_notebook_name)
       self.refresh_notebooks()
-      get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=anvil.server.call('get_all_notebooks')[0])
+      get_open_form().content_panel.clear()
+      get_open_form().content_panel.add_component(NoteEdit(note=None))
       get_open_form().refresh_notebooks()
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()
       self.new_notebook_text_box.text = ''

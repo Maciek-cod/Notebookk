@@ -180,16 +180,16 @@ def delete_notebook(notebook):
     raise Exception("Notebook does not exist or does not belong to this user")
 
 @anvil.server.callable
-def search_notes(query):
+def search_notes(query_text):
   all_notebooks = get_all_notebooks()
-  all_notes = []
-  for notebook in all_notebooks:
-    all_notes += get_all_notes_in_the_notebook(notebook)
-
-  result = all_notes
-  if query:
-    result = [
-      x for x in result
-      if query.casefold() in x['title'].casefold()
-      or query.casefold() in x['content'].casefold()]
-  return result
+  found_notes = []
+  if query_text:
+    for notebook in all_notebooks:
+      found_notes += app_tables.notes.search(
+        q.any_of(
+          title=q.ilike(f"%{query_text}%"),
+          content=q.ilike(f"%{query_text}%"),
+        ), 
+        notebook=notebook)
+    found_notes.sort(key=lambda note: note["updated"], reverse=True )
+  return found_notes

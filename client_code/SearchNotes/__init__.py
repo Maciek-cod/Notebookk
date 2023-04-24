@@ -112,7 +112,9 @@ class SearchNotes(SearchNotesTemplate):
       if result:
         self.repeating_panel_1.items = result
         self.data_grid_1.visible = True
-
+      else:
+        self.show_or_hide_editor(False)
+        
   def delete_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to delete: {}?".format(self.item['title'])):

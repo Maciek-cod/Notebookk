@@ -29,5 +29,6 @@ components:
     name: content_label
     layout_properties: {column: OAKFVL, grid_position: 'LJPRGF,QDNMCV'}
     data_bindings:
-    - {property: text, code: 'self.item[''content''][:100].replace(''\n'', '''')+''...'''}
+    - {property: text, code: 'self.item[''content''][:100].replace(''\n'', '' '')
+        + (''...'' if len(self.item[''content'']) > 100 else '''')'}
 is_package: true

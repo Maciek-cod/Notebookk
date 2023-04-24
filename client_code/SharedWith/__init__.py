@@ -9,6 +9,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 from ..NotebookEdit import NotebookEdit
+from ..NoteEdit import NoteEdit
 
 class SharedWith(SharedWithTemplate):
   def __init__(self, notebook, notebook_edit_form, **properties):
@@ -114,7 +115,8 @@ class SharedWith(SharedWithTemplate):
       self.members_repeating_panel.items = None
       self.notebook_edit_form.close_notebookedit()
       get_open_form().refresh_notebooks()
-      get_open_form().content_panel.raise_event_on_children('x-refresh-notes', notebook=None)
+      get_open_form().content_panel.clear()
+      get_open_form().content_panel.add_component(NoteEdit(note=None))
       self.raise_event("x-close-alert")
       alert(f'You are no longer an user of {self.notebook["name"]} shared by {self.notebook["owner"]["name"]}.')
       get_open_form().edit_button_click()

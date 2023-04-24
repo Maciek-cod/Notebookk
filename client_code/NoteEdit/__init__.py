@@ -15,7 +15,6 @@ class NoteEdit(NoteEditTemplate):
   def __init__(self, note, **properties):
     self.init_components(**properties)
     self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
-    self.set_event_handler('x-refresh-notes', self.refresh_notes)
     
     if note:
       try:
@@ -26,13 +25,9 @@ class NoteEdit(NoteEditTemplate):
         alert(f"It looks like Note requested doesn't exist")
     else:
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
-
-    note = self.item
-    self.check_user_permission(note)
     
   # Check the permission the current user has
-  def check_user_permission(self, note):
-    editable = anvil.server.call('check_user_permission', note=note)
+    editable = anvil.server.call('check_user_permission', note=self.item)
     element = anvil.js.get_dom_node(self.quill_editor)
     if not editable:
       self.quill = Quill( element, {
@@ -71,17 +66,6 @@ class NoteEdit(NoteEditTemplate):
     
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
-        
-  def refresh_notes(self, notebook, **event_args):
-    self.notebooks_drop_down.items = anvil.server.call('get_all_notebook_names')
-    try:
-      self.item = anvil.server.call('get_the_last_note', notebook)
-      self.check_user_permission(note=self.item)
-      self.quill.setContents(json.loads(self.item['content_json']))
-    except:
-      self.item = anvil.server.call('get_the_last_note', notebook=anvil.server.call('get_all_notebooks')[0])
-      self.check_user_permission(note=self.item)
-      self.quill.setContents(json.loads(self.item['content_json']))
 
   def delete_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
