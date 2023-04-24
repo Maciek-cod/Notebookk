@@ -63,7 +63,7 @@ class NotebookEdit(NotebookEditTemplate):
   def save_new_notebook(self):
     if self.validator.is_valid():
       new_notebook_name = self.new_notebook_text_box.text
-      new_notebook = anvil.server.call('seve_new_notebook', new_notebook_name)
+      new_notebook = anvil.server.call('save_new_notebook', new_notebook_name)
       self.refresh_notebooks()
       get_open_form().refresh_notebooks()
       get_open_form().notebooks_panel.get_components()[0].notebook_name_link_click()

@@ -115,7 +115,7 @@ def save_new_note(note_dict):
   notebook.update(updated=datetime.now())
   
 @anvil.server.callable
-def seve_new_notebook(notebook_name):
+def save_new_notebook(notebook_name):
   notebook = app_tables.notebooks.add_row(name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
   app_tables.permission.add_row(notebook=notebook ,user=current_user ,can_edit=True)
   create_new_note(notebook)

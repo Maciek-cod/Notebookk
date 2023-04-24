@@ -57,6 +57,4 @@ class Homepage(HomepageTemplate):
   def log_out_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
-    self.notebooks_panel.items = None
-    self.content_panel.clear()
     Homepage()
