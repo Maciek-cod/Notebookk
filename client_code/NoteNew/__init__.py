@@ -55,10 +55,10 @@ class NoteNew(NoteNewTemplate):
 
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
-
-  def title_text_box_show(self, **event_args):
-    """This method is called when the TextBox is shown on the screen"""
-    self.title_text_box.focus()
+  
+  def title_text_box_focus(self, **event_args):
+    """This method is called when the TextBox gets focus"""
+    self.title_text_box.placeholder = ''
 
   def go_back_button_click(self, **event_args):
     """This method is called when the button is clicked"""

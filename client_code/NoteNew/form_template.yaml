@@ -37,7 +37,7 @@ components:
     layout_properties: {grid_position: 'GPOFNA,LZRKQP', column: null}
     data_bindings:
     - {property: text, code: 'self.item[''title'']', writeback: true}
-    event_bindings: {show: title_text_box_show}
+    event_bindings: {focus: title_text_box_focus}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '#ae0000',
       visible: true, text: You must enter title name, font_size: null, font: '', spacing_above: none,
