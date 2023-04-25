@@ -18,7 +18,7 @@ class NoteEdit(NoteEditTemplate):
     
     if note:
       try:
-        self.item = anvil.server.call('get_note_by_id', note)
+        self.item = note
       except:
         get_open_form().content_panel.clear()
         get_open_form().content_panel.add_component(NoteEdit())
@@ -26,7 +26,7 @@ class NoteEdit(NoteEditTemplate):
     else:
       self.item = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
     
-  # Check the permission the current user has
+    # Check the permission the current user has
     editable = anvil.server.call('check_user_permission', note=self.item)
     element = anvil.js.get_dom_node(self.quill_editor)
     if not editable:
@@ -72,9 +72,11 @@ class NoteEdit(NoteEditTemplate):
     if confirm("Are you sure you want to delete: {}?".format(self.item['title'])):
       to_delete_note = self.item
       notebook_of_deleted_note = to_delete_note['notebook']
+      last_note_in_delete_note_notebook = anvil.server.call('get_the_last_note', notebook=notebook_of_deleted_note)
       get_open_form().delete_note(note=to_delete_note)
       get_open_form().refresh_notebooks()
-      self.refresh_notes(notebook_of_deleted_note)
+      get_open_form().content_panel.clear()
+      get_open_form().content_panel.add_component(NoteEdit(note=last_note_in_delete_note_notebook))
         
   def save_button_click(self, **event_args):
     """This method is called when the button is clicked"""

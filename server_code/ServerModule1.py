@@ -76,11 +76,6 @@ def get_one_before_the_last_note_from_the_notebook(note):
     return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=note['notebook'])[1]
   except:
     return None
-    
-@anvil.server.callable
-def get_note_by_id(note):
-  if current_user is not None:
-    return app_tables.notes.get_by_id(note.get_id())
   
 @anvil.server.callable
 def get_all_notes_in_the_notebook(notebook):
@@ -98,7 +93,7 @@ def create_new_note(notebook):
 def create_welcoming_note(notebook):
   new_note = {}
   new_note['title'] = 'Your First Note 📝'
-  new_note['content_json'] = json.dumps([{"insert":"\n\n"},{"attributes":{"color":"#6b24b2"},"insert":"Welcome to Notebookkk!"},{"attributes":{"align":"center","header":1},"insert":"\n"},{"attributes":{"align":"center"},"insert":"\n"},{"insert":"To create a new notebook, click on the \"Edit\" button on the \"Notebooks\" sidebar on the left of the homepage. Once you have created a notebook, you can add notes to it by clicking on the \"New Note\" button on the homepage. When ready, click on \"Save\"."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"To share a notebook, click on the \"Share\" button next to the notebook you want to share on the \"Edit Notebooks\" popup. Then, enter the email addresses of the users you want to add and select the permissions you want to grant them, such as read-only or editing access."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"When an added user logs in to Notebookk, they will see the shared notebook on their homepage. If they have editing access, they can add and edit notes in the shared notebook. If they have read-only access, they can only view the notes."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"\n "},{"attributes":{"align":"center","header":2},"insert":"\n"},{"insert":"\n\n\n\n\n\n"}])
+  new_note['content_json'] = json.dumps([{"insert":"\n\n"},{"attributes":{"color":"#6b24b2"},"insert":"Welcome to Notebookkk!"},{"attributes":{"align":"center","header":1},"insert":"\n"},{"attributes":{"align":"center"},"insert":"\n"},{"insert":"To create a new notebook, click on the \"Add\" button on the \"Notebooks\" sidebar on the left-hand side of the homepage. Once you have created a notebook, you can add notes to it by clicking on the \"New Note\" button on the top right side of the homepage. When ready, click on \"Save\"."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"To share a notebook, click the three dots next to the notebook and then the \"Share\" button. Then, enter the email addresses of the users you want to add and select the permission you want to grant them, such as editing access or read-only."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"When an added user logs in, they will see the shared notebook on their homepage."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"\n "},{"attributes":{"align":"center","header":2},"insert":"\n"},{"insert":"\n\n\n\n\n\n"}])
   new_note['content'] = 'Welcoming Note'
   new_note['notebook'] = notebook
   anvil.server.call('save_new_note', new_note)
