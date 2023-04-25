@@ -8,7 +8,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from ..NotebookEdit import NotebookEdit
+# from ..NotebookEdit import NotebookEdit
 from ..NoteEdit import NoteEdit
 
 class SharedWith(SharedWithTemplate):
@@ -35,10 +35,10 @@ class SharedWith(SharedWithTemplate):
 
   def add_user_to_notebook_users(self, user, read_only):
     anvil.server.call('add_user_to_notebook_users', self.notebook, user, read_only)
-    if read_only:
+    if not read_only:
       alert(f'You successfully shared {self.notebook["name"]} with {user["name"]} with read-only permissins.')
     else:
-      alert(f'You successfully shared {self.notebook["name"]} with {user["name"]}')
+      alert(f'You successfully shared {self.notebook["name"]} with {user["name"]}.')
     self.open_alert()
     
   def open_alert(self, **event_args):

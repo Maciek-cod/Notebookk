@@ -9,6 +9,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 from ...NoteNew import NoteNew
+from ...NotebookEdit import NotebookEdit
 
 class NavBar(NavBarTemplate):
   def __init__(self, **properties):
@@ -31,5 +32,6 @@ class NavBar(NavBarTemplate):
 
   def notebook_menu_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    alert('Hello')
-
+    alert(content=NotebookEdit(self.item),
+        large=True,
+        buttons=[])

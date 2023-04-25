@@ -4,59 +4,97 @@ container:
 components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"XMRLJD":25,"GQPHWD":35}',
-    spacing_below: small, background: ''}
-  name: column_panel_1
-  layout_properties: {grid_position: 'ZWBBAN,JRZMTI'}
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
+  name: column_panel_2
+  layout_properties: {grid_position: 'QCDGMI,RQWFRC'}
   components:
-  - type: Button
-    properties: {role: filled-button, align: left, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: ' Add', font_size: null, font: '', spacing_above: none,
-      icon_align: left, spacing_below: large, italic: false, background: '', bold: false,
-      underline: false, icon: 'fa:plus-circle'}
-    name: new_notebook_button
-    layout_properties: {grid_position: 'LFLYHH,XMRLJD', full_width_row: true, column: UEUMBH}
-    event_bindings: {click: new_notebook_button_click}
-  - type: TextBox
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: New Notebook...,
-      border: '', enabled: true, foreground: '', visible: false, text: '', font_size: null,
-      font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false}
-    name: new_notebook_text_box
-    layout_properties: {grid_position: 'DEFDGO,GQPHWD', column: UEUMBH}
-    event_bindings: {pressed_enter: new_notebook_text_box_pressed_enter, show: new_notebook_text_box_show}
+  - type: Label
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: 18, font: '', spacing_above: none, icon_align: left,
+      spacing_below: none, italic: false, background: '', bold: true, underline: false,
+      icon: ''}
+    name: notebook_name_label
+    layout_properties: {grid_position: 'QFNWHV,PKZNWM'}
+    data_bindings:
+    - {property: text, code: 'self.item[''name'']'}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: column_panel_2
-    layout_properties: {grid_position: 'DEFDGO,JXQBOR'}
+      wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{"IGBYSY":20,"GYSLCB":20,"ETDHNT":20}',
+      spacing_below: none, background: ''}
+    name: column_panel_4
+    layout_properties:
+      col_widths: {}
+      grid_position: QFNWHV,NYSJXR
     components:
     - type: Button
-      properties: {role: filled-button, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: Save, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:check'}
-      name: save_notebook_button
-      layout_properties: {grid_position: 'CDAJKK,QHAPCM', column: CABPSA, full_width_row: true}
-      event_bindings: {click: save_notebook_button_click}
+      properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: '', font_size: 17, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:pencil'}
+      name: edit_button
+      layout_properties: {column: null, grid_position: 'HCLSQQ,IGBYSY'}
+      event_bindings: {click: edit_button_click}
     - type: Button
       properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:undo'}
-      name: cancel_button
-      layout_properties: {column: AVRFVS, grid_position: 'CDAJKK,TBWLTO', full_width_row: true}
-      event_bindings: {click: cancel_button_click}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '#ae0000',
-      visible: false, text: You must enter new notebook name., font_size: null, font: '',
-      spacing_above: none, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: true, underline: false, icon: ''}
-    name: name_missing_lbl
-    layout_properties: {grid_position: 'BVUHVA,NCYRUA', column: UEUMBH}
-- type: RepeatingPanel
-  properties: {spacing_above: none, spacing_below: none, item_template: NotebookEdit.RowTemplate4}
-  name: notebooks_names_panel
-  layout_properties: {grid_position: 'UGZPVB,JOPXVI'}
+        foreground: '', visible: true, text: '', font_size: 17, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:share-square-o'}
+      name: shared_with_button
+      layout_properties: {column: XBFSID, grid_position: 'HCLSQQ,GYSLCB'}
+      event_bindings: {click: shared_with_button_click}
+    - type: Button
+      properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
+        foreground: 'theme:Error', visible: true, text: '', font_size: 17, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:trash'}
+      name: delete_notebook_button
+      layout_properties:
+        col_widths: {}
+        grid_position: HCLSQQ,ETDHNT
+      event_bindings: {click: delete_notebook_button_click}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"FVJPBQ":30,"QYBEKV":22}',
+      spacing_below: none, background: ''}
+    name: column_panel_1
+    layout_properties: {grid_position: 'MAPHOP,DPGCYY'}
+    components:
+    - type: TextBox
+      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: false, text: '', font_size: 17,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false}
+      name: notebook_name_text_box
+      layout_properties:
+        col_widths: {}
+        grid_position: MOUUEQ,FVJPBQ
+      data_bindings:
+      - {property: text, code: 'self.item[''name'']', writeback: false}
+      event_bindings: {pressed_enter: notebook_name_text_box_pressed_enter}
+    - type: ColumnPanel
+      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+        wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"FUTCCG":30,"FEBYBF":30}',
+        spacing_below: none, background: ''}
+      name: column_panel_5
+      layout_properties:
+        col_widths: {}
+        grid_position: MOUUEQ,QYBEKV
+      components:
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: false, text: '', font_size: 17, font: '', spacing_above: none,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: 'fa:check'}
+        name: update_notebook_name_button
+        layout_properties: {column: ODAHLD, grid_position: 'VUYBUQ,FUTCCG'}
+        event_bindings: {click: update_notebook_name_button_click}
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: false, text: '', font_size: 17, font: '', spacing_above: none,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: 'fa:undo'}
+        name: undo_button
+        layout_properties: {column: AVRFVS, grid_position: 'VUYBUQ,FEBYBF'}
+        event_bindings: {click: undo_button_click}
 is_package: true

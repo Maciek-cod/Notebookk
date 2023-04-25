@@ -10,7 +10,7 @@ from anvil.tables import app_tables
 
 from ..NoteNew import NoteNew
 from ..NoteEdit import NoteEdit
-from ..NotebookEdit import NotebookEdit
+from ..NotebookAdd import NotebookAdd
 from ..SearchNotes import SearchNotes
 from ..WelcomeAlert import WelcomeAlert
 
@@ -28,14 +28,15 @@ class Homepage(HomepageTemplate):
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
     self.content_panel.clear()
     self.content_panel.add_component(NoteEdit(note=None))
+    self.set_event_handler('x-delete-notebook', self.delete_notebook)
     
   def refresh_notebooks(self):
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
     
   def edit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    alert(content=NotebookEdit(),
-          title="Edit Notebooks",
+    alert(content=NotebookAdd(),
+          title="Add Notebook",
           large=True,
           buttons=[])
     
@@ -54,6 +55,12 @@ class Homepage(HomepageTemplate):
     anvil.server.call('delete_note', note)
     Notification("",title=f"{note_deleted} is gone!", timeout=2).show()
 
+  def delete_notebook(self, notebook, **event_args):
+    anvil.server.call('delete_notebook', notebook)
+    self.content_panel.clear()
+    self.content_panel.add_component(NoteEdit(note=None))
+    self.refresh_notebooks()
+    
   def log_out_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
