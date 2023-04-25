@@ -37,8 +37,8 @@ Notebookk is a web-based application, so there is no need to install any softwar
 
 ## Usage
 
-To create a new notebook, click on the "Edit" button on the "Notebooks" sidebar on the left of the homepage. Once you have created a notebook, you can add notes to it by clicking on the "New Note" button on the homepage. Use the Quill editor toolbar to style your notes as desired, and when ready, click on "Save".
+To create a new notebook, click on the "Add" button on the "Notebooks" sidebar on the left-hand side of the homepage. Once you have created a notebook, you can add notes to it by clicking on the "New Note" button on the top right side of the homepage. When ready, click on "Save". Use the Quill editor toolbar to style your notes as desired, and when ready, click on "Save".
 
-To share a notebook, click on the "Share" button next to the notebook you want to share on the "Edit Notebooks" popup. Then, enter the email addresses of the users you want to add and select the permissions you want to grant them, such as read-only or editing access. If the user exists, they will be added automatically.
+To share a notebook, click the three dots next to the notebook and then the "Share" button. Then, enter the email addresses of the users you want to add and select the permission you want to grant them, such as editing access or read-only. If the user exists, they will be added automatically.
 
 When an added user logs in to Notebookk, they will see the shared notebook on their homepage. If they have editing access, they can add and edit notes in the shared notebook. If they have read-only access, they can only view the notes.
