@@ -17,7 +17,7 @@ components:
     layout_properties: {grid_position: 'FHTUNG,HWIOBG'}
     components:
     - type: TextBox
-      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Title...,
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
         border: None, enabled: true, foreground: '', visible: true, text: '', font_size: 25,
         font: '', spacing_above: none, type: text, spacing_below: small, italic: false,
         background: '', bold: false, underline: true}
@@ -30,7 +30,7 @@ components:
         column: null
       data_bindings:
       - {property: text, code: 'self.item[''title'']', writeback: false}
-      event_bindings: {}
+      event_bindings: {focus: title_text_box_focus}
     - type: Button
       properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: '', font_size: 20, font: '', spacing_above: none,

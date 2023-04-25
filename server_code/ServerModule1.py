@@ -84,7 +84,7 @@ def get_all_notes_in_the_notebook(notebook):
   
 def create_new_note(notebook):
   new_note = {}
-  new_note['title'] = 'New Note 📝'
+  new_note['title'] = 'Title...'
   new_note['content_json'] = json.dumps([{"insert":"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}])
   new_note['content'] = 'New Note'
   new_note['notebook'] = notebook

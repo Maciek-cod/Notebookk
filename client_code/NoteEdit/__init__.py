@@ -66,14 +66,19 @@ class NoteEdit(NoteEditTemplate):
     
   def handle_quill_keydown_ctrl_s(self, event_name, els):
     self.save_button_click()
-
+  
+  def title_text_box_focus(self, **event_args):
+    """This method is called when the TextBox gets focus"""
+    if self.title_text_box.text == 'Title...':
+      self.title_text_box.text = ''
+      
   def delete_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     if confirm("Are you sure you want to delete: {}?".format(self.item['title'])):
       to_delete_note = self.item
       notebook_of_deleted_note = to_delete_note['notebook']
-      last_note_in_delete_note_notebook = anvil.server.call('get_the_last_note', notebook=notebook_of_deleted_note)
       get_open_form().delete_note(note=to_delete_note)
+      last_note_in_delete_note_notebook = anvil.server.call('get_the_last_note', notebook=notebook_of_deleted_note)
       get_open_form().refresh_notebooks()
       get_open_form().content_panel.clear()
       get_open_form().content_panel.add_component(NoteEdit(note=last_note_in_delete_note_notebook))
