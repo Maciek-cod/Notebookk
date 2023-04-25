@@ -29,7 +29,7 @@ components:
   layout_properties: {grid_position: 'QJSJMQ,ADNSCH'}
   components:
   - type: TextBox
-    properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Note title...,
+    properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Title...,
       border: None, enabled: true, foreground: '', visible: true, text: '', font_size: 25,
       font: '', spacing_above: small, type: text, spacing_below: none, italic: false,
       background: '', bold: false, underline: true}

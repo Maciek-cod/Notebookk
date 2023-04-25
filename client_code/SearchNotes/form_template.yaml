@@ -85,7 +85,7 @@ components:
         background: '', bold: false, underline: true}
       name: title_text_box
       layout_properties: {width: 580.5, grid_position: 'WLTHEE,YKQUBS', column: null}
-      event_bindings: {}
+      event_bindings: {focus: title_text_box_focus}
       data_bindings:
       - {property: text, code: 'self.item[''title'']', writeback: false}
     - type: Button

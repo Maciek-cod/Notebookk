@@ -22,6 +22,11 @@ def find_user(email):
   return user if user else False
 
 @anvil.server.callable
+def get_note_by_id(note):
+  if current_user is not None:
+    return app_tables.notes.get_by_id(note.get_id())
+    
+@anvil.server.callable
 def add_user_to_notebook_users(notebook, user, read_only):
   notebook = app_tables.notebooks.get_by_id(notebook.get_id())
   notebook['users'] += [user]

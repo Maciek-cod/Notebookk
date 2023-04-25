@@ -89,6 +89,11 @@ class SearchNotes(SearchNotesTemplate):
     except:
       self.show_or_hide_editor(False)
 
+  def title_text_box_focus(self, **event_args):
+    """This method is called when the TextBox gets focus"""
+    if self.title_text_box.text == 'Title...':
+      self.title_text_box.text = ''
+      
   def search_text_box_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
     self.search_text_box_change()
@@ -126,7 +131,7 @@ class SearchNotes(SearchNotesTemplate):
   def save_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     note_edited = {}
-    note_edited['title'] = 'New Note' if self.title_text_box.text.strip() == '' or self.title_text_box.text == None else self.title_text_box.text.strip()
+    note_edited['title'] = 'Title...' if self.title_text_box.text.strip() == '' or self.title_text_box.text == None else self.title_text_box.text.strip()
     note_edited['notebook'] = self.notebooks_drop_down.selected_value
     note_edited['content_json'] = json.dumps(self.quill.getContents().ops)
     note_edited['content'] = self.quill.getText()

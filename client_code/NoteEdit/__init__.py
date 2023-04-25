@@ -86,7 +86,7 @@ class NoteEdit(NoteEditTemplate):
   def save_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     note_edited = {}
-    note_edited['title'] = 'New Note' if self.title_text_box.text.strip() == '' or self.title_text_box.text == None else self.title_text_box.text.strip()
+    note_edited['title'] = 'Title...' if self.title_text_box.text.strip() == '' or self.title_text_box.text == None else self.title_text_box.text.strip()
     note_edited['notebook'] = self.notebooks_drop_down.selected_value
     note_edited['content_json'] = json.dumps(self.quill.getContents().ops)
     note_edited['content'] = self.quill.getText()
