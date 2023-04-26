@@ -102,7 +102,7 @@ class SearchNotes(SearchNotesTemplate):
   def search_text_box_show(self, **event_args):
     """This method is called when the TextBox is shown on the screen"""
     self.search_text_box.focus()
-    self.search_text_box.select()   
+    self.search_text_box.select()
     
   def search_text_box_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""

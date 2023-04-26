@@ -195,5 +195,5 @@ components:
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"NYOOQE":55,"FSUVMN":50,"UNUWND":20}',
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"NYOOQE":55,"FSUVMN":50,"UNUWND":20,"PSEQXK":50}',
     spacing_below: small, background: ''}
