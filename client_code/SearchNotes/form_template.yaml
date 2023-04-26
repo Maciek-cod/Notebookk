@@ -38,7 +38,7 @@ components:
   layout_properties:
     col_widths: {}
     grid_position: SMFUJA,PSEQXK
-  event_bindings: {show: search_text_box_show, change: search_text_box_change, pressed_enter: search_text_box_pressed_enter}
+  event_bindings: {show: search_text_box_show, pressed_enter: search_text_box_pressed_enter}
 - type: DataGrid
   properties:
     role: null

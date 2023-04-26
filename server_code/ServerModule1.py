@@ -94,7 +94,7 @@ def get_all_notes_in_the_notebook(notebook):
   
 def create_new_note(notebook):
   new_note = {}
-  new_note['title'] = 'Title...'
+  new_note['title'] = 'New Note'
   new_note['content_json'] = json.dumps([{"insert":"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}])
   new_note['content'] = 'New Note'
   new_note['notebook'] = notebook
@@ -102,7 +102,7 @@ def create_new_note(notebook):
 
 def create_welcoming_note(notebook):
   new_note = {}
-  new_note['title'] = 'Your First Note 📝'
+  new_note['title'] = 'Your First Note'
   new_note['content_json'] = json.dumps([{"insert":"\n\n"},{"attributes":{"color":"#6b24b2"},"insert":"Welcome to Notebookkk!"},{"attributes":{"align":"center","header":1},"insert":"\n"},{"attributes":{"align":"center"},"insert":"\n"},{"insert":"To create a new notebook, click on the \"Add\" button on the \"Notebooks\" sidebar on the left-hand side of the homepage. Once you have created a notebook, you can add notes to it by clicking on the \"New Note\" button on the top right side of the homepage. When ready, click on \"Save\"."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"To share a notebook, click the three dots next to the notebook and then the \"Share\" button. Then, enter the email addresses of the users you want to add and select the permission you want to grant them, such as editing access or read-only."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"When an added user logs in, they will see the shared notebook on their homepage."},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"\n "},{"attributes":{"align":"center","header":2},"insert":"\n"},{"insert":"\n\n\n\n\n\n"}])
   new_note['content'] = 'Welcoming Note'
   new_note['notebook'] = notebook
@@ -121,11 +121,16 @@ def save_new_note(note_dict):
   
 @anvil.server.callable
 def save_new_notebook(notebook_name):
-  notebook = app_tables.notebooks.add_row(name=notebook_name, updated=datetime.now(), owner=current_user, users=[current_user])
+  notebook = app_tables.notebooks.add_row(
+    name=notebook_name,
+    updated=datetime.now(),
+    owner=current_user,
+    users=[current_user]
+  )
   app_tables.permission.add_row(notebook=notebook ,user=current_user ,can_edit=True)
   create_new_note(notebook)
   return notebook
-
+  
 @anvil.server.callable
 def create_notebook_with_welcoming_note():
   notebook = app_tables.notebooks.add_row(name=f'Welcome {current_user["name"]}!', updated=datetime.now() ,owner=current_user, users=[current_user])
