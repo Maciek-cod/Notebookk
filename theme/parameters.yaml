@@ -49,10 +49,6 @@ roles:
   components: [TextBox, TextArea, DatePicker, DropDown]
 - name: input-error
   components: [TextBox, TextArea, DatePicker, DropDown]
-- name: note-title-link
-  components: [Link]
-- name: save-button
-  components: [Button]
 color_scheme:
   preset_groups:
   - name: Colour Scheme

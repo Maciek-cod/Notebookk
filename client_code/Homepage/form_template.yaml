@@ -33,7 +33,7 @@ components:
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Notebooks:', font_size: 20, font: '', spacing_above: small,
         icon_align: right_edge, spacing_below: small, italic: false, background: '',
-        bold: false, underline: true, icon: ''}
+        bold: false, underline: false, icon: ''}
       name: label_1
       layout_properties: {grid_position: 'SSFEBX,TSXMFU'}
     - type: Button
@@ -51,7 +51,7 @@ components:
     name: notebooks_panel
     layout_properties: {}
   - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Log Out, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: true, icon: ''}

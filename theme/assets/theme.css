@@ -1076,16 +1076,6 @@ div.plot-container.plotly svg.main-svg {
   bottom: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-  .anvil-role-save-button > button {
-/*       color: %color:Primary%;
-      color: %color:On Primary%;
-      font-size: 10px;
-      padding: 2px 8px; */
-  }
-}
-
-
 @media screen and (max-width: 350px) {
   .btn, .btn-default, .file-loader>label {
     font-size: 10px;

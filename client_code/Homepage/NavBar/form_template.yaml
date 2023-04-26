@@ -25,7 +25,7 @@ components:
     event_bindings: {click: notebook_name_link_click}
     components: []
   - type: Button
-    properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
+    properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none,
       icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
       underline: false, icon: 'fa:ellipsis-v'}
