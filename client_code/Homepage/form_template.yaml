@@ -83,17 +83,18 @@ components:
     layout_properties: {slot: footer}
     components:
     - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: About, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:info-circle'}
+      properties: {role: about_help_buttons, align: center, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: About, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:info-circle'}
       name: about_button
       layout_properties: {grid_position: 'MLDGSB,HFBNIK'}
+      event_bindings: {click: about_button_click}
     - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Help, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:question-circle'}
+      properties: {role: about_help_buttons, align: center, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: Help, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:question-circle'}
       name: help_button
       layout_properties: {grid_position: 'MLDGSB,JFLVPB'}
 - type: FlowPanel

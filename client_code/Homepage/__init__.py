@@ -13,6 +13,7 @@ from ..NoteEdit import NoteEdit
 from ..NotebookAdd import NotebookAdd
 from ..SearchNotes import SearchNotes
 from ..WelcomeAlert import WelcomeAlert
+from ..About import About
 
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
@@ -41,6 +42,11 @@ class Homepage(HomepageTemplate):
           large=True,
           buttons=[])
     
+  def about_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(About())
+
   def new_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
