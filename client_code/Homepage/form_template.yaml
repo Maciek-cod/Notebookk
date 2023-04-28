@@ -43,7 +43,7 @@ components:
       properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Log Out, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: true, icon: ''}
+        underline: false, icon: ''}
       name: log_out_button
       layout_properties: {slot: footer, grid_position: 'TKAPAQ,JLEGML'}
       event_bindings: {click: log_out_button_click}
@@ -65,7 +65,7 @@ components:
       properties: {role: tonal-button, align: right, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Add, font_size: 14, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-        underline: true, icon: 'fa:plus'}
+        underline: false, icon: 'fa:plus'}
       name: edit_button
       layout_properties: {grid_position: 'SSFEBX,GHPRHY'}
       event_bindings: {click: edit_button_click}
@@ -75,6 +75,27 @@ components:
       background: ''}
     name: notebooks_panel
     layout_properties: {}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      spacing_below: small, background: 'theme:Surface Variant'}
+    name: column_panel_3
+    layout_properties: {slot: footer}
+    components:
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: About, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:info-circle'}
+      name: about_button
+      layout_properties: {grid_position: 'MLDGSB,HFBNIK'}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Help, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:question-circle'}
+      name: help_button
+      layout_properties: {grid_position: 'MLDGSB,JFLVPB'}
 - type: FlowPanel
   properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
