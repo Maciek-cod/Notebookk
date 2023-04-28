@@ -83,15 +83,15 @@ components:
     layout_properties: {slot: footer}
     components:
     - type: Button
-      properties: {role: show-hide-navbar, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: About, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: true, icon: 'fa:info-circle'}
+      properties: {role: show-hide-navbar, align: center, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: About, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: true, icon: 'fa:info-circle'}
       name: about_button
       layout_properties: {grid_position: 'MLDGSB,HFBNIK'}
       event_bindings: {click: about_button_click}
     - type: Button
-      properties: {role: show-hide-navbar, align: right, tooltip: '', border: '',
+      properties: {role: show-hide-navbar, align: center, tooltip: '', border: '',
         enabled: true, foreground: '', visible: true, text: Help, font_size: null,
         font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: true, icon: 'fa:question-circle'}
