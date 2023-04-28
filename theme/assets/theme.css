@@ -724,6 +724,34 @@ button.close > span, button.close {
   box-shadow: none;
 }
 
+.anvil-role-search-button > .btn, .anvil-role-search-button.file-loader>label {
+  color: %color:On Secondary Container%;
+  background-color: %color:Secondary Container%;
+}
+
+.anvil-role-search-button > .btn:focus, .anvil-role-search-button > .btn:active, .anvil-role-search-button > .btn:active:focus, 
+.anvil-role-search-button.file-loader>label:focus, .anvil-role-search-button.file-loader>label:active, .anvil-role-search-button.file-loader>label:focus:active {
+  background: linear-gradient(0deg, %color:Dark Overlay 2%, %color:Dark Overlay 2%), %color:Secondary Container%;
+  color: %color:On Secondary Container%;
+}
+
+.anvil-role-search-button > .btn:hover, .anvil-role-search-button.file-loader>label:hover{
+  background: linear-gradient(0deg, %color:Dark Overlay 1%, %color:Dark Overlay 1%), %color:Secondary Container%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  color: %color:On Secondary Container%;
+}
+
+.anvil-role-search-button > .btn[disabled], .anvil-role-search-button> .btn[disabled]:hover, 
+.anvil-role-search-button.file-loader.anvil-disabled>label, .anvil-role-search-button.file-loader.anvil-disabled>label:hover, 
+.anvil-role-filled-button > .btn[disabled], .anvil-role-filled-button > .btn[disabled]:hover, 
+.anvil-role-filled-button.file-loader.anvil-disabled>label, .anvil-role-filled-button.file-loader.anvil-disabled>label:hover, 
+.anvil-role-elevated-button > .btn[disabled], .anvil-role-elevated-button > .btn[disabled]:hover, 
+.anvil-role-elevated-button.file-loader.anvil-disabled>label, .anvil-role-elevated-button.file-loader.anvil-disabled>label:hover { 
+  background: %color:Disabled Container%;
+  color: %color:On Disabled%;
+  box-shadow: none;
+}
+
 .anvil-role-outlined-button > .btn[disabled], .anvil-role-outlined-button.file-loader.anvil-disabled>label {
   border-color: %color:On Disabled%;
   background-color: transparent;
@@ -1078,13 +1106,10 @@ div.plot-container.plotly svg.main-svg {
 
 @media screen and (max-width: 350px) {
   .btn, .btn-default, .file-loader>label {
-    font-size: 10px;
-    padding: 5px 12px;
-    min-height: 32px;
+  font-size: 10px;
+  padding: 5px 12px;
+  min-height: 32px;
   }
-}
-
-@media screen and (max-width: 350px) {
   button[style*="font-size: 16px;"] {
     font-size: 13px !important;
     padding: 2px 6px !important;

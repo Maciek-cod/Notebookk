@@ -49,7 +49,9 @@ roles:
   components: [TextBox, TextArea, DatePicker, DropDown]
 - name: input-error
   components: [TextBox, TextArea, DatePicker, DropDown]
-- name: about_help_buttons
+- name: show-hide-navbar
+  components: [Link, Button]
+- name: search-button
   components: [Button]
 color_scheme:
   preset_groups:

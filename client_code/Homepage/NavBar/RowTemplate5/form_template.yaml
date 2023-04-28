@@ -5,7 +5,7 @@ container:
     italic: false, background: 'theme:On Primary', bold: false, underline: false}
 components:
 - type: Link
-  properties: {role: note-title-link, url: '', align: left, tooltip: '', border: '',
+  properties: {role: show-hide-navbar, url: '', align: left, tooltip: '', border: '',
     foreground: '', visible: true, text: '', font_size: null, wrap_on: mobile, font: '',
     col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
     italic: false, background: '', bold: false, underline: false, icon: ''}
