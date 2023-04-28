@@ -15,7 +15,7 @@ current_user = anvil.users.get_user()
 def save_user_name(name):
   user = app_tables.users.get_by_id(anvil.users.get_user().get_id())
   user.update(name=name)
-
+  
 @anvil.server.callable
 def find_user(email):
   user = app_tables.users.get(email=email)

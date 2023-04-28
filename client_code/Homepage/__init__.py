@@ -24,7 +24,8 @@ class Homepage(HomepageTemplate):
       alert(content=WelcomeAlert(),
             buttons=[],
             dismissible=False)
-      
+
+    self.item = current_user
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
     self.content_panel.clear()
     self.content_panel.add_component(NoteEdit(note=None))
