@@ -11,6 +11,8 @@ from anvil.tables import app_tables
 from anvil.js.window import Quill
 import json
 
+from ..NoteEdit import NoteEdit
+
 class Help(HelpTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -43,5 +45,9 @@ class Help(HelpTemplate):
     issue_note['content_json'] = json.dumps(self.quill.getContents().ops)
     issue_note['content'] = self.quill.getText()
     anvil.server.call('save_new_note', issue_note)
-    self.quill.setContents('')
-    Notification("",title='Thank you for sharing! Will address this as soon as possible!', timeout=2).show()
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(NoteEdit(note=None))
+    alert(
+      title="Thanks for your feedback. I'll address this issue promptly and make sure it's resolved as soon as possible.",
+      content=self.quill.getText()
+    )
