@@ -77,6 +77,14 @@ def get_all_notebook_names():
 @anvil.server.callable
 def get_issue_notebook():
   return app_tables.notebooks.get(name='Issues and Bugs', owner=app_tables.users.get(name='Maciek'))
+
+@anvil.server.callable
+def send_email(issue):
+    anvil.email.send(
+    to="maciek.anywhere@gmail.com",
+    subject="Issue/bug Notebook anvil",
+    text=issue
+  )
   
 @anvil.server.callable
 def get_the_last_note(notebook): 
