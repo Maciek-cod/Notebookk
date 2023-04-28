@@ -5,7 +5,7 @@ container:
 components:
 - type: DataGrid
   properties:
-    role: null
+    role: tonal-data-grid
     columns:
     - {id: STPZAD, title: 'Your Notebooks:', data_key: column_2, $$hashKey: 'object:16065'}
     auto_header: false
@@ -31,7 +31,7 @@ components:
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 20, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 18, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: true, underline: false,
         icon: ''}
       name: user_name_label
@@ -40,16 +40,16 @@ components:
       - {property: text, code: 'self.item[''name''] + (''...'' if len(self.item[''name''])
           > 12 else '''')'}
     - type: Button
-      properties: {role: show-hide-navbar, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Log Out, font_size: null, font: '', spacing_above: none,
+      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: none,
         icon_align: right, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:sign-out'}
+        underline: true, icon: 'fa:sign-out'}
       name: log_out_button
       layout_properties: {slot: footer, grid_position: 'TKAPAQ,JLEGML'}
       event_bindings: {click: log_out_button_click}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"TSXMFU":30,"GHPRHY":27}',
+      wrap_on: never, col_spacing: none, spacing_above: small, col_widths: '{"TSXMFU":30,"GHPRHY":27}',
       spacing_below: small, background: ''}
     name: column_panel_1
     layout_properties: {}
@@ -65,7 +65,7 @@ components:
       properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Add, font_size: 14, font: '', spacing_above: small,
         icon_align: right, spacing_below: small, italic: false, background: '', bold: true,
-        underline: false, icon: 'fa:plus'}
+        underline: true, icon: 'fa:plus'}
       name: edit_button
       layout_properties: {grid_position: 'SSFEBX,GHPRHY'}
       event_bindings: {click: edit_button_click}
@@ -77,8 +77,8 @@ components:
     layout_properties: {}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: none, spacing_above: small, col_widths: '{}', spacing_below: small,
-      background: 'theme:Surface Variant'}
+      wrap_on: never, col_spacing: none, spacing_above: small, col_widths: '{"HFBNIK":30,"JFLVPB":30}',
+      spacing_below: small, background: ''}
     name: column_panel_3
     layout_properties: {slot: footer}
     components:
@@ -86,7 +86,7 @@ components:
       properties: {role: show-hide-navbar, align: left, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: About, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:info-circle'}
+        underline: true, icon: 'fa:info-circle'}
       name: about_button
       layout_properties: {grid_position: 'MLDGSB,HFBNIK'}
       event_bindings: {click: about_button_click}
@@ -94,7 +94,7 @@ components:
       properties: {role: show-hide-navbar, align: right, tooltip: '', border: '',
         enabled: true, foreground: '', visible: true, text: Help, font_size: null,
         font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: 'fa:question-circle'}
+        background: '', bold: false, underline: true, icon: 'fa:question-circle'}
       name: help_button
       layout_properties: {grid_position: 'MLDGSB,JFLVPB'}
       event_bindings: {click: help_button_click}
