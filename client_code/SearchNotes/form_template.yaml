@@ -40,12 +40,13 @@ components:
     grid_position: SMFUJA,PSEQXK
   event_bindings: {show: search_text_box_show, pressed_enter: search_text_box_pressed_enter}
 - type: Button
-  properties: {role: search-button, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: false, text: Search, font_size: null, font: '', spacing_above: small,
+  properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Search, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   name: search_button
   layout_properties: {grid_position: 'ZWPYPM,WKPIPL'}
+  event_bindings: {click: search_button_click}
 - type: DataGrid
   properties:
     role: null
