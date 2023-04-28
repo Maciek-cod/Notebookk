@@ -23,9 +23,9 @@ components:
   layout_properties: {slot: left-nav}
   components:
   - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"BXOTSC":30,"JLEGML":30}',
-      spacing_below: small, background: 'theme:Surface Variant'}
+    properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"BXOTSC":30,"JLEGML":30}',
+      spacing_below: none, background: 'theme:Surface Variant'}
     name: column_panel_2
     layout_properties: {}
     components:
@@ -40,10 +40,10 @@ components:
       - {property: text, code: 'self.item[''name''] + (''...'' if len(self.item[''name''])
           > 12 else '''')'}
     - type: Button
-      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Log Out, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: show-hide-navbar, align: right, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: Log Out, font_size: null,
+        font: '', spacing_above: none, icon_align: right, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:sign-out'}
       name: log_out_button
       layout_properties: {slot: footer, grid_position: 'TKAPAQ,JLEGML'}
       event_bindings: {click: log_out_button_click}
