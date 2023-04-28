@@ -35,7 +35,13 @@ class Help(HelpTemplate):
         'theme': 'snow',
         'placeholder': 'Start typing here...' })
 
-  def button_1_click(self, **event_args):
+  def send_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    pass
-
+    issue_note = {}
+    issue_note['title'] = 'Issue/bug'
+    issue_note['notebook'] = anvil.server.call('get_issue_notebook')
+    issue_note['content_json'] = json.dumps(self.quill.getContents().ops)
+    issue_note['content'] = self.quill.getText()
+    anvil.server.call('save_new_note', issue_note)
+    self.quill.setContents('')
+    Notification("",title='Thank you for sharing! Will address this as soon as possible!', timeout=2).show()
