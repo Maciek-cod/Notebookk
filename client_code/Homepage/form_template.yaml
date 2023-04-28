@@ -5,7 +5,7 @@ container:
 components:
 - type: DataGrid
   properties:
-    role: tonal-data-grid
+    role: null
     columns:
     - {id: STPZAD, title: 'Your Notebooks:', data_key: column_2, $$hashKey: 'object:16065'}
     auto_header: false
@@ -78,7 +78,7 @@ components:
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: never, col_spacing: none, spacing_above: small, col_widths: '{"HFBNIK":30,"JFLVPB":30}',
-      spacing_below: small, background: ''}
+      spacing_below: small, background: 'theme:Surface Variant'}
     name: column_panel_3
     layout_properties: {slot: footer}
     components:

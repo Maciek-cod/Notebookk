@@ -9,7 +9,7 @@ components:
 - type: Label
   properties: {role: input-prompt, align: left, tooltip: '', border: '', foreground: '',
     visible: true, text: ' Having an issue with an app? Found a bug? Please report
-      it here...', font_size: null, font: '', spacing_above: small, icon_align: left,
+      it here...', font_size: 20, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: true, underline: false,
     icon: ''}
   name: help_label

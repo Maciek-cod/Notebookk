@@ -3,10 +3,10 @@ container:
   properties: {col_widths: '{}'}
 components:
 - type: Label
-  properties: {role: headline, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, text: ' How to use the Notebook?', font_size: 20, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: 'theme:Surface
-      Variant', bold: true, underline: false, icon: ''}
+  properties: {role: input-prompt, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
+    visible: true, text: 'How to use the Notebook?', font_size: 20, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: true, icon: ''}
   name: how_to_use_notebook_label
   layout_properties: {grid_position: 'RNHKYT,VBFTLH'}
 - type: RichText
@@ -32,10 +32,10 @@ components:
   name: rich_text_1
   layout_properties: {grid_position: 'CESXCZ,DZJDDO'}
 - type: Label
-  properties: {role: headline, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, text: ' Search engine', font_size: 20, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: 'theme:Surface
-      Variant', bold: true, underline: false, icon: ''}
+  properties: {role: input-prompt, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
+    visible: true, text: Search engine, font_size: 20, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: true, icon: ''}
   name: search_label
   layout_properties: {grid_position: 'OSXLCK,BAMJKH'}
 - type: RichText
@@ -46,10 +46,10 @@ components:
   name: search_rich_text
   layout_properties: {grid_position: 'JPQOGC,BCYRNU', full_width_row: false, row_background: ''}
 - type: Label
-  properties: {role: headline, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, text: ' Licence', font_size: 20, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: 'theme:Surface
-      Variant', bold: true, underline: false, icon: ''}
+  properties: {role: input-prompt, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
+    visible: true, text: Licence, font_size: 20, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: true,
+    icon: ''}
   name: licence_label
   layout_properties: {grid_position: 'CFDOZF,BSWCFM'}
 - type: RichText
