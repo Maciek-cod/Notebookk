@@ -1082,9 +1082,6 @@ div.plot-container.plotly svg.main-svg {
     padding: 5px 12px;
     min-height: 32px;
   }
-}
-
-@media screen and (max-width: 350px) {
   button[style*="font-size: 16px;"] {
     font-size: 13px !important;
     padding: 2px 6px !important;

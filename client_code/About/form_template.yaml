@@ -1,0 +1,95 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {role: input-prompt, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
+    visible: true, text: 'How to use the Notebook?', font_size: 20, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: true, icon: ''}
+  name: how_to_use_notebook_label
+  layout_properties: {grid_position: 'RNHKYT,VBFTLH'}
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: '1. To create a new notebook,
+      click on the "Add" button on the "Notebooks" sidebar on the left-hand side of
+      the homepage.
+
+      2. Once you have created a notebook, you can add notes to it by clicking on
+      the "New Note" button on the top right side of the homepage. When ready, click
+      on "Save".
+
+
+      2. To share a notebook, click the three dots next to the notebook and then the
+      "Share" button. Then, enter the email addresses of the users you want to add
+      and select the permission you want to grant them, such as editing access or
+      read-only.
+
+
+      3. When an added user logs in, they will see the shared notebook on their homepage.',
+    font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+    format: markdown}
+  name: rich_text_1
+  layout_properties: {grid_position: 'CESXCZ,DZJDDO'}
+- type: Label
+  properties: {role: body, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
+    visible: true, text: Search engine, font_size: 20, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: true, icon: ''}
+  name: search_label
+  layout_properties: {grid_position: 'OSXLCK,BAMJKH'}
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: Click on the search button to easily search through the titles and content of your notes.,
+    font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+    format: markdown}
+  name: search_rich_text
+  layout_properties: {grid_position: 'JPQOGC,BCYRNU', full_width_row: false, row_background: ''}
+- type: Label
+  properties: {role: body, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
+    visible: true, text: Licence, font_size: 20, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: true,
+    icon: ''}
+  name: licence_label
+  layout_properties: {grid_position: 'CFDOZF,BSWCFM'}
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: 'Copyright (c) 2023 Maciej
+      Sylwestrowicz
+
+
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+
+      of this software and associated documentation files (the "Software"), to deal
+
+      in the Software without restriction, including without limitation the rights
+
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+
+      copies of the Software, and to permit persons to whom the Software is
+
+      furnished to do so, subject to the following conditions:
+
+
+      The above copyright notice and this permission notice shall be included in
+
+      all copies or substantial portions of the Software.
+
+
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+
+      THE SOFTWARE.', font: '', spacing_above: small, spacing_below: small, data: null,
+    background: '', format: markdown}
+  name: licence_rich_text
+  layout_properties: {grid_position: 'WFCHTY,LJOPMK'}
+is_package: true

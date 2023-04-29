@@ -7,12 +7,15 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil.js.window import location
 
 from ..NoteNew import NoteNew
 from ..NoteEdit import NoteEdit
 from ..NotebookAdd import NotebookAdd
 from ..SearchNotes import SearchNotes
 from ..WelcomeAlert import WelcomeAlert
+from ..About import About
+from ..Help import Help
 
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
@@ -24,7 +27,8 @@ class Homepage(HomepageTemplate):
       alert(content=WelcomeAlert(),
             buttons=[],
             dismissible=False)
-      
+
+    self.item = current_user
     self.notebooks_panel.items = anvil.server.call('get_all_notebooks')
     self.content_panel.clear()
     self.content_panel.add_component(NoteEdit(note=None))
@@ -40,6 +44,16 @@ class Homepage(HomepageTemplate):
           large=True,
           buttons=[])
     
+  def about_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(About())
+
+  def help_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(Help())
+
   def new_note_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.content_panel.clear()
@@ -50,6 +64,11 @@ class Homepage(HomepageTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(SearchNotes())
 
+  def log_out_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.users.logout()
+    location.href = ""
+  
   def delete_note(self, note, **event_args):
     note_deleted = note['title']
     anvil.server.call('delete_note', note)
@@ -60,8 +79,3 @@ class Homepage(HomepageTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(NoteEdit(note=None))
     self.refresh_notebooks()
-    
-  def log_out_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    anvil.users.logout()
-    Homepage()

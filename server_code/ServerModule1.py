@@ -1,5 +1,5 @@
+import anvil.email
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
-from anvil.google.drive import app_files
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -15,7 +15,7 @@ current_user = anvil.users.get_user()
 def save_user_name(name):
   user = app_tables.users.get_by_id(anvil.users.get_user().get_id())
   user.update(name=name)
-
+  
 @anvil.server.callable
 def find_user(email):
   user = app_tables.users.get(email=email)
@@ -73,11 +73,26 @@ def get_all_notebook_names():
   if current_user is not None:
     return [(nbook['name'], nbook) for nbook in app_tables.notebooks.search(tables.order_by("updated", ascending=False), users=[current_user])]
   raise Exception("User is not logged in.")
+
+@anvil.server.callable
+def get_issue_notebook():
+  return app_tables.notebooks.get(name='Issues and Bugs', owner=app_tables.users.get(name='Maciek'))
+
+@anvil.server.callable
+def send_email(issue):
+    anvil.email.send(
+    to="maciek.anywhere@gmail.com",
+    subject="Issue/bug Notebook anvil",
+    text=issue
+  )
   
 @anvil.server.callable
 def get_the_last_note(notebook): 
   if current_user is not None:
-    return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=notebook)[0]
+    try:
+      return app_tables.notes.search(tables.order_by("updated", ascending=False), notebook=notebook)[0]
+    except:
+      return None
   raise Exception("User is not logged in.")
 
 @anvil.server.callable

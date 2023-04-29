@@ -79,6 +79,8 @@ class NoteEdit(NoteEditTemplate):
       notebook_of_deleted_note = to_delete_note['notebook']
       get_open_form().delete_note(note=to_delete_note)
       last_note_in_delete_note_notebook = anvil.server.call('get_the_last_note', notebook=notebook_of_deleted_note)
+      if not last_note_in_delete_note_notebook:
+        last_note_in_delete_note_notebook = anvil.server.call('get_the_last_note', anvil.server.call('get_all_notebooks')[0])
       get_open_form().refresh_notebooks()
       get_open_form().content_panel.clear()
       get_open_form().content_panel.add_component(NoteEdit(note=last_note_in_delete_note_notebook))

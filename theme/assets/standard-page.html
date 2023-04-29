@@ -75,7 +75,8 @@
       showSidebar();
     }
   });
-  $('.left-nav').off('click').on('click', '.anvil-role-note-title-link', function() {
+  
+  $('.left-nav').off('click').on('click', '.anvil-role-show-hide-navbar', function() {
     if ($('.nav-shield').is(":visible")) {
       $('.nav-shield').trigger('click');
     }
