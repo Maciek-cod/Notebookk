@@ -7,7 +7,7 @@ Notebookk is a daily note-taking application that allows you to create multiple 
 
 - Create multiple notebooks and access them from anywhere via mobile phone, tablet, or PC.
 - Organize notes by notebooks and the time and date of their last edit.
-- Easily search text through all your notebooks.
+- Easily search text through the titles and content of your notes.
 - Use the Quill editor to style your notes and add images, links, emojis, and many more.
 - Share your notebooks with other app users for collaboration.
 - Share your notebooks with other app users for collaboration with permissions options for the added user to read only or to be able to edit the notes inside the shared notebook.
