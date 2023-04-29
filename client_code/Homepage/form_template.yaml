@@ -78,7 +78,7 @@ components:
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: never, col_spacing: none, spacing_above: small, col_widths: '{"HFBNIK":30,"JFLVPB":30}',
-      spacing_below: small, background: 'theme:Surface Variant'}
+      spacing_below: small, background: 'theme:Primary Overlay 1'}
     name: column_panel_3
     layout_properties: {slot: footer}
     components:
